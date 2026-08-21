@@ -1,0 +1,6 @@
+{
+  "name": "Undangan Pernikahan Anton & Sri",
+  "description": "Undangan digital pernikahan elegan Anton & Sri dengan animasi motion path, RSVP, lokasi peta interaktif, galeri foto, dan pemutar musik.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

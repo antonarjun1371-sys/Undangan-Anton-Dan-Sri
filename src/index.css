@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@layer utilities {
+  .font-serif-wedding {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+  .font-script {
+    font-family: 'Great Vibes', cursive;
+  }
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  .font-sans-wedding {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+  }
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #A8812B 0%, #D4AF37 30%, #8B6B23 70%, #C5A028 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .border-gold {
+    border-image: linear-gradient(to bottom right, #D4AF37, #AA771C) 1;
+  }
+
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+  }
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(0) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(40px);
+    opacity: 0;
+  }
+}
+
+.animate-petal-fall {
+  animation: petalFall linear infinite;
+  will-change: transform;
+}
+
+/* Keyframe animations for Motion Path, Shimmer, Emphasis, and Float */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+    transform: scale(1.03);
+  }
+}
+
+@keyframes motionPathSway {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, rgba(255,235,160,0.6) 50%, rgba(212,175,55,0.1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Custom Leaflet Map styling */
+.leaflet-popup-content-wrapper {
+  background: #FFFDF9 !important;
+  color: #2C2622 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+}
+
+.leaflet-container {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  z-index: 10 !important;
+}
+
+/* Hide scrollbar for clean applet feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 999px;
+}
+
