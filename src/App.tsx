@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { CoverEnvelope } from './components/CoverEnvelope';
-import { MotionPathPetals } from './components/MotionPathPetals';
+import { BackgroundDecorative } from './components/BackgroundDecorative';
 import { MusicPlayer } from './components/MusicPlayer';
 import { HeaderNav } from './components/HeaderNav';
 import { HeroSection } from './components/HeroSection';
@@ -52,8 +52,8 @@ export default function App() {
         onOpen={handleOpenEnvelope}
       />
 
-      {/* MOTION PATH PETALS & SPARKLES ANIMATION LAYER */}
-      <MotionPathPetals />
+      {/* LUXURY TEXTURED BACKGROUND, PATTERNS & PETALS ANIMATION LAYER */}
+      <BackgroundDecorative />
 
       {/* BACKGROUND MUSIC PLAYER */}
       <MusicPlayer autoStart={isOpenEnvelope} />

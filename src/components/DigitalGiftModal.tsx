@@ -12,7 +12,8 @@ export const DigitalGiftModal: React.FC<DigitalGiftModalProps> = ({ isOpen, onCl
   const [copiedAccount, setCopiedAccount] = useState<string | null>(null);
 
   const copyToClipboard = (accountNum: string) => {
-    navigator.clipboard.writeText(accountNum);
+    const rawNumber = accountNum.replace(/\s+/g, '');
+    navigator.clipboard.writeText(rawNumber);
     setCopiedAccount(accountNum);
     setTimeout(() => setCopiedAccount(null), 3000);
   };

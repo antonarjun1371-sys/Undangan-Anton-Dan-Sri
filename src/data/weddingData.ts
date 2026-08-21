@@ -106,18 +106,25 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
 
 export const BANK_ACCOUNTS: BankAccount[] = [
   {
-    bankName: "Bank BCA",
-    accountNumber: "8472910384",
+    bankName: "Bank BRI",
+    accountNumber: "6294 0102 9483 531",
     accountHolder: "ANTON DWI PRASTIA",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg"
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg"
   },
   {
-    bankName: "Bank Mandiri",
-    accountNumber: "1420019283741",
+    bankName: "Bank BRI",
+    accountNumber: "0012 0108 3948 502",
     accountHolder: "SRI YATIN",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg"
+    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg"
   }
 ];
 
-// High quality audio MP3 source + web audio synth backup
-export const BACKGROUND_MUSIC_URL = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-waltz-112608.mp3";
+export const SONG_INFO = {
+  title: "Ketika Cinta Bertasbih",
+  artist: "Melly Goeslaw feat. Amee",
+  subtitle: "Soundtrack Pernikahan Islami"
+};
+
+// URL Audio Soundtrack Pernikahan: Ketika Cinta Bertasbih - Melly Goeslaw feat. Amee
+// Jika ingin menggunakan file audio lokal sendiri, masukkan file .mp3 ke folder `src/assets/` dan import di sini.
+export const BACKGROUND_MUSIC_URL = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=ketika-cinta-bertasbih-soundtrack.mp3";

@@ -45,25 +45,140 @@ body {
   }
 }
 
-@keyframes petalFall {
+@keyframes petalSway1 {
   0% {
-    transform: translateY(0) rotate(0deg) translateX(0);
+    transform: translate3d(0, -20px, 0) rotateZ(0deg);
     opacity: 0;
   }
-  10% {
-    opacity: 0.6;
+  8% {
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate3d(35px, 25vh, 0) rotateZ(45deg);
+  }
+  50% {
+    transform: translate3d(-25px, 50vh, 0) rotateZ(90deg);
+  }
+  75% {
+    transform: translate3d(30px, 75vh, 0) rotateZ(135deg);
   }
   90% {
-    opacity: 0.6;
+    opacity: 0.8;
   }
   100% {
-    transform: translateY(105vh) rotate(360deg) translateX(40px);
+    transform: translate3d(-15px, 105vh, 0) rotateZ(180deg);
     opacity: 0;
   }
 }
 
-.animate-petal-fall {
-  animation: petalFall linear infinite;
+@keyframes petalSway2 {
+  0% {
+    transform: translate3d(0, -20px, 0) rotateZ(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.75;
+  }
+  30% {
+    transform: translate3d(-40px, 30vh, 0) rotateZ(-60deg);
+  }
+  60% {
+    transform: translate3d(30px, 60vh, 0) rotateZ(30deg);
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(-20px, 105vh, 0) rotateZ(-120deg);
+    opacity: 0;
+  }
+}
+
+@keyframes petalSway3 {
+  0% {
+    transform: translate3d(0, -20px, 0) rotateZ(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.85;
+  }
+  35% {
+    transform: translate3d(45px, 35vh, 0) rotateZ(75deg);
+  }
+  70% {
+    transform: translate3d(-35px, 70vh, 0) rotateZ(150deg);
+  }
+  92% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(20px, 105vh, 0) rotateZ(210deg);
+    opacity: 0;
+  }
+}
+
+@keyframes petalSway4 {
+  0% {
+    transform: translate3d(0, -20px, 0) rotateZ(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  40% {
+    transform: translate3d(-30px, 40vh, 0) rotateZ(-45deg);
+  }
+  75% {
+    transform: translate3d(25px, 75vh, 0) rotateZ(45deg);
+  }
+  88% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(-10px, 105vh, 0) rotateZ(-90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes petalFlutter3D {
+  0%, 100% {
+    transform: rotateX(0deg) rotateY(0deg) scale(1);
+  }
+  25% {
+    transform: rotateX(45deg) rotateY(60deg) scale(0.95);
+  }
+  50% {
+    transform: rotateX(90deg) rotateY(120deg) scale(0.9);
+  }
+  75% {
+    transform: rotateX(45deg) rotateY(60deg) scale(0.95);
+  }
+}
+
+.petal-sway-1 {
+  animation: petalSway1 linear infinite;
+  will-change: transform, opacity;
+}
+
+.petal-sway-2 {
+  animation: petalSway2 linear infinite;
+  will-change: transform, opacity;
+}
+
+.petal-sway-3 {
+  animation: petalSway3 linear infinite;
+  will-change: transform, opacity;
+}
+
+.petal-sway-4 {
+  animation: petalSway4 linear infinite;
+  will-change: transform, opacity;
+}
+
+.petal-flutter {
+  animation: petalFlutter3D 4s ease-in-out infinite;
+  transform-origin: center center;
+  transform-style: preserve-3d;
   will-change: transform;
 }
 

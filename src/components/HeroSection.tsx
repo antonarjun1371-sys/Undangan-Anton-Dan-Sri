@@ -54,7 +54,7 @@ export const HeroSection: React.FC = () => {
           className="w-full h-full object-cover filter brightness-[0.6] scale-105"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1C1815]/70 via-[#1C1815]/40 to-[#FAF8F5]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1C1815]/70 via-[#1C1815]/40 to-transparent" />
       </div>
 
       {/* Decorative Golden Arch Frame */}
