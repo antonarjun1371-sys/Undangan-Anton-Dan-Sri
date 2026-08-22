@@ -11,6 +11,7 @@ import heroCoverImg from '../assets/images/wedding_hero_cover_1786035117896.jpeg
 import coupleMainImg from '../assets/images/couple_portrait_main_1786035134752.jpeg';
 import coupleGallery2Img from '../assets/images/couple_gallery_2_1786035154936.jpeg';
 import ringsDetailImg from '../assets/images/wedding_rings_detail_1786035171458.jpeg';
+import weddingSongAudio from '../assets/wedding-song.mp3';
 
 export const HERO_COVER_IMAGE = heroCoverImg;
 export const COUPLE_MAIN_IMAGE = coupleMainImg;
@@ -36,7 +37,7 @@ export const BRIDE: CouplePerson = {
   fatherName: "Bapak Achmad",
   motherName: "Ibu Rohaya",
   avatarUrl: coupleGallery2Img, // Ganti dengan foto Mempelai Wanita
-  instagram: "@sriyatin_",
+  instagram: "@riya_27",
   bio: "Seorang wanita yang hangat, penuh senyum dan senantiasa meyakini takdir indah saat dua hati disatukan dalam ketulusan."
 };
 
@@ -107,13 +108,13 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
 export const BANK_ACCOUNTS: BankAccount[] = [
   {
     bankName: "Bank BRI",
-    accountNumber: "6294 0102 9483 531",
+    accountNumber: "007301037406535",
     accountHolder: "ANTON DWI PRASTIA",
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg"
   },
   {
     bankName: "Bank BRI",
-    accountNumber: "0012 0108 3948 502",
+    accountNumber: "651401031772538",
     accountHolder: "SRI YATIN",
     logoUrl: "https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg"
   }
@@ -125,6 +126,13 @@ export const SONG_INFO = {
   subtitle: "Soundtrack Pernikahan Islami"
 };
 
-// URL Audio Soundtrack Pernikahan: Ketika Cinta Bertasbih - Melly Goeslaw feat. Amee
-// Jika ingin menggunakan file audio lokal sendiri, masukkan file .mp3 ke folder `src/assets/` dan import di sini.
-export const BACKGROUND_MUSIC_URL = "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=ketika-cinta-bertasbih-soundtrack.mp3";
+// Audio Soundtrack Pernikahan (menggunakan file mp3 lokal dari src/assets/wedding-song.mp3)
+export const BACKGROUND_MUSIC_URL = weddingSongAudio;
+
+
+
+
+
+
+
+
