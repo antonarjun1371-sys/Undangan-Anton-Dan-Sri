@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { MotionPathPetals } from './MotionPathPetals';
+import { FallingParticles } from './FallingParticles';
 
 export const BackgroundDecorative: React.FC = () => {
   // Sparkle / Bokeh particles in the background
@@ -116,6 +117,9 @@ export const BackgroundDecorative: React.FC = () => {
 
       {/* 7. FALLING FLOWER PETALS (Rose, Sakura, Melati, Gold) */}
       <MotionPathPetals />
+
+      {/* 8. SLOW DRIFTING ROMANTIC GOLD & ROSE STARDUST PARTICLES */}
+      <FallingParticles />
     </div>
   );
 };

@@ -35,37 +35,43 @@ export const EventSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative bg-white rounded-3xl p-8 border border-[#E6DCCF] shadow-xl flex flex-col justify-between text-center space-y-6 hover:shadow-2xl transition-shadow"
+            className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-7 sm:p-9 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] flex flex-col justify-between text-center space-y-6 hover:border-[#D4AF37] hover:shadow-[0_15px_45px_rgba(180,140,70,0.22)] transition-all duration-500 overflow-hidden ring-1 ring-[#D4AF37]/20"
           >
+            {/* Corner Filigree Accents */}
+            <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
+            <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
+            <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-[#D4AF37]/60 rounded-bl pointer-events-none" />
+            <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/60 rounded-br pointer-events-none" />
+
             <div className="space-y-4">
-              <div className="w-14 h-14 mx-auto rounded-2xl bg-[#FAF5EC] border border-[#D4AF37]/40 flex items-center justify-center text-[#8B6B23]">
-                <Calendar className="w-7 h-7" />
+              <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-[#FAF5EC] to-[#F3E5AB]/40 border border-[#D4AF37]/50 flex items-center justify-center text-[#8B6B23] shadow-md ring-2 ring-white">
+                <Calendar className="w-8 h-8 text-[#AA771C]" />
               </div>
 
               <div>
-                <span className="font-cinzel text-xs font-semibold text-[#8B6B23] uppercase tracking-widest">
+                <span className="inline-block px-3 py-0.5 rounded-full bg-[#FAF5EC] border border-[#D4AF37]/30 text-[11px] font-cinzel font-bold text-[#8B6B23] uppercase tracking-widest">
                   Acara Utama
                 </span>
-                <h3 className="font-serif-wedding text-3xl font-bold text-[#2C2622] mt-1">
+                <h3 className="font-serif-wedding text-3xl sm:text-4xl font-bold text-[#2C2622] mt-2">
                   {AKAD_EVENT.title}
                 </h3>
               </div>
 
-              <div className="py-3 px-4 rounded-2xl bg-[#FAF8F5] border border-[#E6DCCF] inline-block w-full space-y-2">
-                <div className="flex items-center justify-center space-x-2 text-sm font-semibold text-[#2C2622]">
+              <div className="py-4 px-4 rounded-2xl bg-[#FAF8F5] border border-[#E6DCCF] inline-block w-full space-y-2.5 shadow-inner">
+                <div className="flex items-center justify-center space-x-2 text-sm sm:text-base font-bold text-[#2C2622]">
                   <Calendar className="w-4 h-4 text-[#D4AF37]" />
                   <span>{AKAD_EVENT.dateStr}</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 text-sm text-[#8B6B23] font-medium">
+                <div className="flex items-center justify-center space-x-2 text-xs sm:text-sm text-[#8B6B23] font-semibold">
                   <Clock className="w-4 h-4 text-[#D4AF37]" />
                   <span>{AKAD_EVENT.timeStr}</span>
                 </div>
               </div>
 
-              <div className="text-xs text-[#2C2622] space-y-1">
-                <p className="font-bold text-[#1C1815]">{AKAD_EVENT.venueName}</p>
-                <p className="flex items-center justify-center gap-1 text-[#3B322B] font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-[#B38728] flex-shrink-0" />
+              <div className="text-xs sm:text-sm text-[#2C2622] space-y-1.5 pt-1">
+                <p className="font-bold text-[#1C1815] text-sm sm:text-base">{AKAD_EVENT.venueName}</p>
+                <p className="flex items-center justify-center gap-1.5 text-[#52463C] font-medium leading-relaxed">
+                  <MapPin className="w-4 h-4 text-[#B38728] shrink-0" />
                   <span>{AKAD_EVENT.address}</span>
                 </p>
               </div>
@@ -75,9 +81,9 @@ export const EventSection: React.FC = () => {
               href={GOOGLE_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 px-5 rounded-full bg-[#2C2622] text-[#FCF6BA] font-medium text-xs sm:text-sm flex items-center justify-center space-x-2 hover:bg-[#3D352E] transition-colors shadow"
+              className="w-full py-3.5 px-5 rounded-full bg-[#2C2622] hover:bg-[#3D352E] text-[#FCF6BA] font-semibold text-xs sm:text-sm flex items-center justify-center space-x-2 border border-[#D4AF37]/40 transition-all shadow-md active:scale-[0.98] cursor-pointer"
             >
-              <Navigation className="w-4 h-4" />
+              <Navigation className="w-4 h-4 text-[#D4AF37]" />
               <span>Petunjuk Arah Akad</span>
             </a>
           </motion.div>
@@ -88,37 +94,43 @@ export const EventSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative bg-white rounded-3xl p-8 border border-[#E6DCCF] shadow-xl flex flex-col justify-between text-center space-y-6 hover:shadow-2xl transition-shadow"
+            className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-7 sm:p-9 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] flex flex-col justify-between text-center space-y-6 hover:border-[#D4AF37] hover:shadow-[0_15px_45px_rgba(180,140,70,0.22)] transition-all duration-500 overflow-hidden ring-1 ring-[#D4AF37]/20"
           >
+            {/* Corner Filigree Accents */}
+            <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
+            <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
+            <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-[#D4AF37]/60 rounded-bl pointer-events-none" />
+            <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/60 rounded-br pointer-events-none" />
+
             <div className="space-y-4">
-              <div className="w-14 h-14 mx-auto rounded-2xl bg-[#FAF5EC] border border-[#D4AF37]/40 flex items-center justify-center text-[#8B6B23]">
-                <Sparkles className="w-7 h-7" />
+              <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-[#FAF5EC] to-[#F3E5AB]/40 border border-[#D4AF37]/50 flex items-center justify-center text-[#8B6B23] shadow-md ring-2 ring-white">
+                <Sparkles className="w-8 h-8 text-[#AA771C]" />
               </div>
 
               <div>
-                <span className="font-cinzel text-xs font-semibold text-[#8B6B23] uppercase tracking-widest">
+                <span className="inline-block px-3 py-0.5 rounded-full bg-[#FAF5EC] border border-[#D4AF37]/30 text-[11px] font-cinzel font-bold text-[#8B6B23] uppercase tracking-widest">
                   Perayaan Syukuran
                 </span>
-                <h3 className="font-serif-wedding text-3xl font-bold text-[#2C2622] mt-1">
+                <h3 className="font-serif-wedding text-3xl sm:text-4xl font-bold text-[#2C2622] mt-2">
                   {RESEPSI_EVENT.title}
                 </h3>
               </div>
 
-              <div className="py-3 px-4 rounded-2xl bg-[#FAF8F5] border border-[#E6DCCF] inline-block w-full space-y-2">
-                <div className="flex items-center justify-center space-x-2 text-sm font-semibold text-[#2C2622]">
+              <div className="py-4 px-4 rounded-2xl bg-[#FAF8F5] border border-[#E6DCCF] inline-block w-full space-y-2.5 shadow-inner">
+                <div className="flex items-center justify-center space-x-2 text-sm sm:text-base font-bold text-[#2C2622]">
                   <Calendar className="w-4 h-4 text-[#D4AF37]" />
                   <span>{RESEPSI_EVENT.dateStr}</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 text-sm text-[#8B6B23] font-medium">
+                <div className="flex items-center justify-center space-x-2 text-xs sm:text-sm text-[#8B6B23] font-semibold">
                   <Clock className="w-4 h-4 text-[#D4AF37]" />
                   <span>{RESEPSI_EVENT.timeStr}</span>
                 </div>
               </div>
 
-              <div className="text-xs text-[#2C2622] space-y-1">
-                <p className="font-bold text-[#1C1815]">{RESEPSI_EVENT.venueName}</p>
-                <p className="flex items-center justify-center gap-1 text-[#3B322B] font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-[#B38728] flex-shrink-0" />
+              <div className="text-xs sm:text-sm text-[#2C2622] space-y-1.5 pt-1">
+                <p className="font-bold text-[#1C1815] text-sm sm:text-base">{RESEPSI_EVENT.venueName}</p>
+                <p className="flex items-center justify-center gap-1.5 text-[#52463C] font-medium leading-relaxed">
+                  <MapPin className="w-4 h-4 text-[#B38728] shrink-0" />
                   <span>{RESEPSI_EVENT.address}</span>
                 </p>
               </div>
@@ -128,7 +140,7 @@ export const EventSection: React.FC = () => {
               href={GOOGLE_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 px-5 rounded-full bg-gradient-to-r from-[#BF953F] to-[#AA771C] text-white font-medium text-xs sm:text-sm flex items-center justify-center space-x-2 hover:opacity-95 transition-opacity shadow"
+              className="w-full py-3.5 px-5 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] hover:brightness-105 text-white font-semibold text-xs sm:text-sm flex items-center justify-center space-x-2 border border-[#AA771C]/50 transition-all shadow-md active:scale-[0.98] cursor-pointer"
             >
               <Navigation className="w-4 h-4" />
               <span>Petunjuk Arah Resepsi</span>

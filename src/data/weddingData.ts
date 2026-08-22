@@ -11,6 +11,7 @@ import heroCoverImg from '../assets/images/wedding_hero_cover_1786035117896.jpeg
 import coupleMainImg from '../assets/images/couple_portrait_main_1786035134752.jpeg';
 import coupleGallery2Img from '../assets/images/couple_gallery_2_1786035154936.jpeg';
 import ringsDetailImg from '../assets/images/wedding_rings_detail_1786035171458.jpeg';
+import weddingFotoImg from '../assets/images/wedding foto.jpeg';
 import weddingSongAudio from '../assets/wedding-song.mp3';
 
 export const HERO_COVER_IMAGE = heroCoverImg;
@@ -37,7 +38,7 @@ export const BRIDE: CouplePerson = {
   fatherName: "Bapak Achmad",
   motherName: "Ibu Rohaya",
   avatarUrl: coupleGallery2Img, // Ganti dengan foto Mempelai Wanita
-  instagram: "@riya_27",
+  instagram: "@riya.s_27",
   bio: "Seorang wanita yang hangat, penuh senyum dan senantiasa meyakini takdir indah saat dua hati disatukan dalam ketulusan."
 };
 
@@ -87,18 +88,24 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
   },
   {
     id: "g2",
+    url: weddingFotoImg,
+    title: "Potret Cinta Mempelai",
+    caption: "Tatapan penuh ketulusan dalam lembaran baru kisah asmara kami."
+  },
+  {
+    id: "g3",
     url: coupleGallery2Img,
     title: "Kebersamaan & Kehangatan",
     caption: "Setiap tawa dan senyuman menjadi saksi ketulusan cinta kami."
   },
   {
-    id: "g3",
+    id: "g4",
     url: ringsDetailImg,
     title: "Simbol Cincin Suci",
     caption: "Dua lingkaran keabadian melambangkan janji setia selamanya."
   },
   {
-    id: "g4",
+    id: "g5",
     url: heroCoverImg,
     title: "Ukiran Kisah Kami",
     caption: "Keindahan momen yang akan dikenang sepanjang masa."

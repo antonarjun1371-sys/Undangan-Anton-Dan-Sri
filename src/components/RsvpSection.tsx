@@ -78,13 +78,19 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E6DCCF] shadow-xl relative"
+          className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] overflow-hidden ring-1 ring-[#D4AF37]/20"
         >
+          {/* Subtle Corner Filigree Accents */}
+          <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
+          <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
+          <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-[#D4AF37]/60 rounded-bl pointer-events-none" />
+          <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/60 rounded-br pointer-events-none" />
+
           {success && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-start space-x-3"
+              className="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-start space-x-3 shadow-sm"
             >
               <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
               <div>
@@ -97,7 +103,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
           )}
 
           {errorMsg && (
-            <div className="mb-6 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center space-x-2">
+            <div className="mb-6 p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center space-x-2">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
               <span>{errorMsg}</span>
             </div>
@@ -106,7 +112,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Nama Tamu */}
             <div className="space-y-1.5">
-              <label className="text-xs font-cinzel font-semibold text-[#8B6B23] uppercase tracking-wider block">
+              <label className="text-xs font-cinzel font-bold text-[#8B6B23] uppercase tracking-wider block">
                 Nama Lengkap
               </label>
               <div className="relative">
@@ -117,17 +123,17 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Contoh: Bapak Ahmad / Saudari Rina"
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#E6DCCF] focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm text-[#2C2622] transition-all"
+                  className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-[#E6DCCF] bg-white/90 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm text-[#2C2622] transition-all shadow-inner"
                 />
               </div>
             </div>
 
             {/* Status Kehadiran Radio Buttons */}
             <div className="space-y-1.5">
-              <label className="text-xs font-cinzel font-semibold text-[#8B6B23] uppercase tracking-wider block">
+              <label className="text-xs font-cinzel font-bold text-[#8B6B23] uppercase tracking-wider block">
                 Konfirmasi Kehadiran
               </label>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {[
                   { value: 'hadir', label: 'Hadir', desc: 'Siap Hadir' },
                   { value: 'tidak', label: 'Maaf, Tidak', desc: 'Berhalangan' },
@@ -137,10 +143,10 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
                     key={opt.value}
                     type="button"
                     onClick={() => setStatus(opt.value as any)}
-                    className={`py-3 px-2 rounded-xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
+                    className={`py-3 px-2 rounded-xl border text-center transition-all cursor-pointer flex flex-col items-center justify-center shadow-sm active:scale-95 ${
                       status === opt.value
-                        ? 'bg-[#2C2622] text-[#FCF6BA] border-[#2C2622] shadow-md'
-                        : 'bg-[#FAF8F5] text-[#52463C] border-[#E6DCCF] hover:border-[#D4AF37]'
+                        ? 'bg-gradient-to-r from-[#2C2622] to-[#3D352E] text-[#FCF6BA] border-[#D4AF37]/60 shadow-md ring-2 ring-[#D4AF37]/30'
+                        : 'bg-[#FAF8F5] text-[#52463C] border-[#E6DCCF] hover:border-[#D4AF37]/60 hover:bg-white'
                     }`}
                   >
                     <span className="text-xs font-bold">{opt.label}</span>
@@ -157,7 +163,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
                 animate={{ opacity: 1, height: 'auto' }}
                 className="space-y-1.5"
               >
-                <label className="text-xs font-cinzel font-semibold text-[#8B6B23] uppercase tracking-wider block">
+                <label className="text-xs font-cinzel font-bold text-[#8B6B23] uppercase tracking-wider block">
                   Jumlah Tamu Yang Hadir
                 </label>
                 <div className="relative">
@@ -165,7 +171,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
                   <select
                     value={guestsCount}
                     onChange={(e) => setGuestsCount(Number(e.target.value))}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#E6DCCF] focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm text-[#2C2622] bg-white transition-all cursor-pointer"
+                    className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-[#E6DCCF] bg-white/90 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm text-[#2C2622] transition-all cursor-pointer shadow-inner"
                   >
                     <option value={1}>1 Orang</option>
                     <option value={2}>2 Orang</option>
@@ -178,7 +184,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
 
             {/* Pesan & Doa Restu */}
             <div className="space-y-1.5">
-              <label className="text-xs font-cinzel font-semibold text-[#8B6B23] uppercase tracking-wider block">
+              <label className="text-xs font-cinzel font-bold text-[#8B6B23] uppercase tracking-wider block">
                 Pesan & Doa Restu
               </label>
               <div className="relative">
@@ -188,7 +194,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tuliskan harapan dan doa terbaik untuk kedua mempelai..."
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#E6DCCF] focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm text-[#2C2622] transition-all"
+                  className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-[#E6DCCF] bg-white/90 focus:bg-white focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/20 outline-none text-sm text-[#2C2622] transition-all shadow-inner"
                 />
               </div>
             </div>
@@ -199,7 +205,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
               disabled={loading}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] text-white font-medium text-sm flex items-center justify-center space-x-2 shadow-lg cursor-pointer disabled:opacity-50"
+              className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] hover:brightness-105 text-white font-bold text-sm sm:text-base flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl border border-[#AA771C]/50 transition-all cursor-pointer disabled:opacity-50"
             >
               <Send className="w-4 h-4" />
               <span>{loading ? 'Mengirim Konfirmasi...' : 'Kirim RSVP & Doa Restu'}</span>

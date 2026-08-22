@@ -128,17 +128,23 @@ export const MapSection: React.FC = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="bg-white rounded-3xl p-4 sm:p-6 border border-[#E6DCCF] shadow-xl space-y-6"
+        className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] space-y-6 overflow-hidden ring-1 ring-[#D4AF37]/20"
       >
+        {/* Subtle Corner Filigree Accents */}
+        <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
+        <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
+        <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-[#D4AF37]/60 rounded-bl pointer-events-none" />
+        <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/60 rounded-br pointer-events-none" />
+
         {/* Leaflet Map Canvas */}
         <div
           ref={mapContainerRef}
-          className="w-full h-80 sm:h-96 rounded-2xl overflow-hidden border border-[#D4AF37]/30 shadow-inner z-10"
+          className="w-full h-80 sm:h-96 rounded-2xl overflow-hidden border-2 border-[#D4AF37]/40 shadow-inner z-10 ring-4 ring-[#FAF5EC]"
         />
 
         {/* Direction Actions Bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-          <div className="flex items-center space-x-2 text-xs text-[#786C62]">
+          <div className="flex items-center space-x-2 text-xs sm:text-sm font-medium text-[#786C62]">
             <MapPin className="w-4 h-4 text-[#D4AF37]" />
             <span>Probolinggo, Jawa Timur</span>
           </div>
@@ -146,9 +152,9 @@ export const MapSection: React.FC = () => {
           <div className="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
             <button
               onClick={copyCoordinates}
-              className="flex-1 sm:flex-none py-2.5 px-4 rounded-full bg-[#FAF5EC] text-[#8B6B23] border border-[#D4AF37]/30 text-xs font-medium flex items-center justify-center space-x-1.5 hover:bg-[#F2E8D8] transition-colors cursor-pointer"
+              className="flex-1 sm:flex-none py-2.5 px-4 rounded-full bg-[#FAF5EC] text-[#8B6B23] border border-[#D4AF37]/40 text-xs font-semibold flex items-center justify-center space-x-1.5 hover:bg-[#F2E8D8] transition-colors cursor-pointer shadow-sm"
             >
-              {copiedCoords ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5" />}
+              {copiedCoords ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-[#AA771C]" />}
               <span>{copiedCoords ? "Koordinat Tersalin!" : "Salin Koordinat"}</span>
             </button>
 
@@ -156,7 +162,7 @@ export const MapSection: React.FC = () => {
               href={GOOGLE_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-none py-2.5 px-4 rounded-full bg-[#2C2622] text-[#FCF6BA] text-xs font-medium flex items-center justify-center space-x-1.5 hover:bg-[#3D352E] transition-colors cursor-pointer shadow"
+              className="flex-1 sm:flex-none py-2.5 px-4 rounded-full bg-[#2C2622] hover:bg-[#3D352E] text-[#FCF6BA] text-xs font-semibold flex items-center justify-center space-x-1.5 border border-[#D4AF37]/40 transition-all cursor-pointer shadow"
             >
               <Navigation className="w-3.5 h-3.5 text-[#D4AF37]" />
               <span>Google Maps</span>
@@ -166,7 +172,7 @@ export const MapSection: React.FC = () => {
               href={WAZE_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-none py-2.5 px-4 rounded-full bg-[#33CCFF] text-white text-xs font-medium flex items-center justify-center space-x-1.5 hover:opacity-90 transition-opacity cursor-pointer shadow"
+              className="flex-1 sm:flex-none py-2.5 px-4 rounded-full bg-[#33CCFF] text-white text-xs font-semibold flex items-center justify-center space-x-1.5 hover:opacity-90 transition-opacity cursor-pointer shadow"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               <span>Waze</span>

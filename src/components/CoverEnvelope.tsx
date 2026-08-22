@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, Sparkles, Heart } from 'lucide-react';
 import { HERO_COVER_IMAGE, WEDDING_DATE_STRING } from '../data/weddingData';
+import { FallingParticles } from './FallingParticles';
 
 interface CoverEnvelopeProps {
   isOpen: boolean;
@@ -38,6 +39,8 @@ export const CoverEnvelope: React.FC<CoverEnvelopeProps> = ({
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-black/15" />
+            {/* Romantic falling stardust on cover screen */}
+            <FallingParticles />
           </div>
 
           {/* COVER CONTENT CONTAINER - FULL SCREEN */}

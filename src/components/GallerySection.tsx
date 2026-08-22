@@ -54,9 +54,15 @@ export const GallerySection: React.FC = () => {
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative bg-white rounded-3xl p-4 sm:p-6 border border-[#E6DCCF] shadow-xl overflow-hidden mb-8"
+        className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-4 sm:p-7 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] overflow-hidden mb-8 ring-1 ring-[#D4AF37]/20"
       >
-        <div className="relative h-80 sm:h-[420px] rounded-2xl overflow-hidden group">
+        {/* Corner Filigree Accents */}
+        <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
+        <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
+        <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-[#D4AF37]/60 rounded-bl pointer-events-none" />
+        <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/60 rounded-br pointer-events-none" />
+
+        <div className="relative h-80 sm:h-[430px] rounded-2xl overflow-hidden group border border-[#D4AF37]/30 ring-4 ring-[#FAF5EC] shadow-md">
           <AnimatePresence mode="wait">
             <motion.img
               key={activeSlide}
@@ -72,11 +78,14 @@ export const GallerySection: React.FC = () => {
           </AnimatePresence>
 
           {/* Slide Overlay Gradient & Caption */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
-            <h3 className="font-serif-wedding text-2xl sm:text-3xl font-bold text-[#FCF6BA]">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-6 sm:p-8 text-white">
+            <div className="inline-block self-start px-2.5 py-0.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#FCF6BA] text-[10px] sm:text-xs font-cinzel font-bold tracking-widest uppercase mb-1.5 backdrop-blur-sm">
+              Momen Terpilih
+            </div>
+            <h3 className="font-serif-wedding text-2xl sm:text-4xl font-bold text-[#FCF6BA] drop-shadow-md">
               {GALLERY_PHOTOS[activeSlide].title}
             </h3>
-            <p className="text-xs sm:text-sm text-white/90 mt-1 max-w-xl italic">
+            <p className="text-xs sm:text-base text-white/90 mt-1 max-w-xl italic drop-shadow leading-relaxed">
               "{GALLERY_PHOTOS[activeSlide].caption}"
             </p>
           </div>
@@ -84,14 +93,14 @@ export const GallerySection: React.FC = () => {
           {/* Navigation Controls */}
           <button
             onClick={handlePrev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/40 text-white backdrop-blur hover:bg-black/70 transition-colors cursor-pointer"
+            className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/50 text-white backdrop-blur border border-white/20 hover:bg-[#D4AF37] hover:text-[#2C2622] transition-all cursor-pointer shadow-lg active:scale-95"
             title="Foto Sebelumnya"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/40 text-white backdrop-blur hover:bg-black/70 transition-colors cursor-pointer"
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/50 text-white backdrop-blur border border-white/20 hover:bg-[#D4AF37] hover:text-[#2C2622] transition-all cursor-pointer shadow-lg active:scale-95"
             title="Foto Selanjutnya"
           >
             <ChevronRight className="w-5 h-5" />
@@ -101,14 +110,14 @@ export const GallerySection: React.FC = () => {
           <div className="absolute top-4 right-4 flex items-center space-x-2">
             <button
               onClick={() => setIsAutoPlay(!isAutoPlay)}
-              className="p-2 rounded-full bg-black/40 backdrop-blur text-white hover:bg-black/70 transition-colors cursor-pointer"
+              className="p-2.5 rounded-full bg-black/50 backdrop-blur border border-white/20 text-white hover:bg-black/80 transition-all cursor-pointer shadow"
               title={isAutoPlay ? "Jeda SlideShow" : "Putar SlideShow"}
             >
               {isAutoPlay ? <Pause className="w-4 h-4 text-[#D4AF37]" /> : <Play className="w-4 h-4" />}
             </button>
             <button
               onClick={() => setSelectedImageIndex(activeSlide)}
-              className="p-2 rounded-full bg-black/40 backdrop-blur text-white hover:bg-black/70 transition-colors cursor-pointer"
+              className="p-2.5 rounded-full bg-black/50 backdrop-blur border border-white/20 text-white hover:bg-black/80 transition-all cursor-pointer shadow"
               title="Perbesar Foto"
             >
               <Maximize2 className="w-4 h-4" />
@@ -122,10 +131,10 @@ export const GallerySection: React.FC = () => {
             <button
               key={idx}
               onClick={() => setActiveSlide(idx)}
-              className={`h-2 rounded-full transition-all cursor-pointer ${
+              className={`h-2.5 rounded-full transition-all cursor-pointer ${
                 activeSlide === idx
-                  ? 'w-8 bg-gradient-to-r from-[#BF953F] to-[#AA771C]'
-                  : 'w-2 bg-[#E6DCCF] hover:bg-[#D4AF37]/50'
+                  ? 'w-9 bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] shadow-sm'
+                  : 'w-2.5 bg-[#E6DCCF] hover:bg-[#D4AF37]/50'
               }`}
             />
           ))}
@@ -177,7 +186,7 @@ export const GallerySection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4"
+            className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5"
           >
             {GALLERY_PHOTOS.map((photo, index) => (
               <motion.div
@@ -187,16 +196,20 @@ export const GallerySection: React.FC = () => {
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 whileHover={{ scale: 1.03, y: -4 }}
                 onClick={() => setSelectedImageIndex(index)}
-                className="relative aspect-4/3 rounded-2xl overflow-hidden border border-[#E6DCCF] shadow-sm cursor-pointer group bg-white"
+                className="relative aspect-4/3 rounded-2xl overflow-hidden border-2 border-[#E6DCCF] hover:border-[#D4AF37] shadow-[0_4px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.25)] cursor-pointer group bg-white transition-all duration-300 ring-2 ring-white"
               >
                 <img
                   src={photo.url}
                   alt={photo.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
-                  <Maximize2 className="w-6 h-6 text-[#FCF6BA]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 sm:p-4 flex flex-col justify-end text-white">
+                  <p className="font-serif-wedding text-xs sm:text-sm font-bold text-[#FCF6BA] drop-shadow">{photo.title}</p>
+                  <p className="text-[10px] sm:text-xs text-white/90 line-clamp-1 italic drop-shadow">{photo.caption}</p>
+                </div>
+                <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/40 backdrop-blur text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Maximize2 className="w-3.5 h-3.5 text-[#FCF6BA]" />
                 </div>
               </motion.div>
             ))}
@@ -208,7 +221,7 @@ export const GallerySection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.4 }}
-            className="columns-2 sm:columns-3 gap-3 sm:gap-4 space-y-3 sm:space-y-4"
+            className="columns-2 sm:columns-3 gap-3 sm:gap-5 space-y-3 sm:space-y-5"
           >
             {GALLERY_PHOTOS.map((photo, index) => (
               <motion.div
@@ -218,17 +231,20 @@ export const GallerySection: React.FC = () => {
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 whileHover={{ scale: 1.02, y: -3 }}
                 onClick={() => setSelectedImageIndex(index)}
-                className="break-inside-avoid relative rounded-2xl overflow-hidden border border-[#E6DCCF] shadow-sm cursor-pointer group bg-white"
+                className="break-inside-avoid relative rounded-2xl overflow-hidden border-2 border-[#E6DCCF] hover:border-[#D4AF37] shadow-[0_4px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.25)] cursor-pointer group bg-white transition-all duration-300 ring-2 ring-white"
               >
                 <img
                   src={photo.url}
                   alt={photo.title}
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 sm:p-4 flex flex-col justify-end text-white">
-                  <p className="font-serif-wedding text-xs sm:text-sm font-bold text-[#FCF6BA]">{photo.title}</p>
-                  <p className="text-[10px] sm:text-xs text-white/80 line-clamp-2 italic">{photo.caption}</p>
+                  <p className="font-serif-wedding text-xs sm:text-sm font-bold text-[#FCF6BA] drop-shadow">{photo.title}</p>
+                  <p className="text-[10px] sm:text-xs text-white/90 line-clamp-2 italic drop-shadow">{photo.caption}</p>
+                </div>
+                <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/40 backdrop-blur text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Maximize2 className="w-3.5 h-3.5 text-[#FCF6BA]" />
                 </div>
               </motion.div>
             ))}
