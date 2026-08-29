@@ -83,6 +83,8 @@ export const CoupleSection: React.FC = () => {
               <img
                 src={GROOM.avatarUrl}
                 alt={GROOM.fullName}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
@@ -185,6 +187,8 @@ export const CoupleSection: React.FC = () => {
               <img
                 src={BRIDE.avatarUrl}
                 alt={BRIDE.fullName}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover rounded-full group-hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />

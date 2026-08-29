@@ -217,6 +217,8 @@ export const GallerySection: React.FC = () => {
                 <img
                   src={photo.url}
                   alt={photo.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   referrerPolicy="no-referrer"
                 />
@@ -253,6 +255,8 @@ export const GallerySection: React.FC = () => {
                 <img
                   src={photo.url}
                   alt={photo.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
                   referrerPolicy="no-referrer"
                 />

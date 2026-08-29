@@ -29,17 +29,19 @@ export const CoverEnvelope: React.FC<CoverEnvelopeProps> = ({
             scale: 0.9,
             transition: { duration: 1.1, ease: [0.76, 0, 0.24, 1] }
           }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center w-full h-full bg-black overflow-hidden"
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center w-full h-[100dvh] min-h-[100dvh] bg-black overflow-hidden select-none"
         >
           {/* FULL SCREEN BACKGROUND IMAGE */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <img
               src={HERO_COVER_IMAGE}
               alt="Anton & Sri Wedding Cover"
               className="w-full h-full object-cover brightness-95 scale-105"
+              loading="eager"
+              decoding="async"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-black/15" />
+            <div className="absolute inset-0 bg-black/20" />
             {/* Romantic falling stardust on cover screen */}
             <FallingParticles />
             
@@ -55,32 +57,32 @@ export const CoverEnvelope: React.FC<CoverEnvelopeProps> = ({
             // ENTRANCE ANIMATION: Smooth scale-up and fade-in
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-            className="relative z-10 w-full h-full min-h-screen flex flex-col items-center justify-between py-10 px-6 sm:py-14 sm:px-12 text-center overflow-y-auto no-scrollbar"
+            transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+            className="relative z-10 w-full h-full min-h-[100dvh] flex flex-col items-center justify-between py-6 px-4 sm:py-10 sm:px-8 text-center overflow-y-auto no-scrollbar"
           >
             {/* TOP HEADER SECTION WITH KINETIC MOTION GRAPHIC MONOGRAM */}
-            <div className="flex flex-col items-center space-y-2.5 mt-1 sm:mt-4 relative">
+            <div className="flex flex-col items-center space-y-2 mt-1 sm:mt-2 relative">
               {/* MONOGRAM BADGE WITH RADAR & KINETIC RINGS */}
               <div className="relative flex items-center justify-center">
-                <KineticPulseRadar className="w-28 h-28" color="#FCF6BA" />
-                <KineticRings size={96} color="#D4AF37" className="absolute" />
+                <KineticPulseRadar className="w-24 h-24 sm:w-28 sm:h-28" color="#FCF6BA" />
+                <KineticRings size={84} color="#D4AF37" className="absolute" />
                 
                 <motion.div 
                   animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative z-10 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FAF8F5]/95 border-2 border-[#D4AF37] flex items-center justify-center shadow-[0_0_25px_rgba(212,175,55,0.7)]"
+                  className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-[#FAF8F5]/95 border-2 border-[#D4AF37] flex items-center justify-center shadow-[0_0_25px_rgba(212,175,55,0.7)]"
                 >
-                  <span className="font-script text-xl sm:text-2xl text-[#8B6B23] font-bold">A & S</span>
+                  <span className="font-script text-lg sm:text-2xl text-[#8B6B23] font-bold">A & S</span>
                 </motion.div>
               </div>
 
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-black/60 border border-[#D4AF37] text-xs font-cinzel text-amber-200 uppercase tracking-widest font-bold shadow-lg"
+                transition={{ delay: 0.3 }}
+                className="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-black/60 border border-[#D4AF37] text-[10px] sm:text-xs font-cinzel text-amber-200 uppercase tracking-widest font-bold shadow-lg"
               >
-                <Sparkles className="w-3.5 h-3.5 text-[#D4AF37] animate-pulse" />
+                <Sparkles className="w-3 h-3 text-[#D4AF37] animate-pulse" />
                 <span>Undangan Pernikahan Digital</span>
               </motion.div>
             </div>
@@ -89,8 +91,8 @@ export const CoverEnvelope: React.FC<CoverEnvelopeProps> = ({
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.3 }}
-              className="my-auto py-6 px-5 sm:py-8 sm:px-8 flex flex-col items-center max-w-md w-full space-y-3 bg-black/40 backdrop-blur-[2px] rounded-3xl border border-[#D4AF37]/70 shadow-[0_15px_45px_rgba(0,0,0,0.6)] ring-1 ring-white/20 relative overflow-hidden"
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="my-auto py-5 px-4 sm:py-7 sm:px-8 flex flex-col items-center max-w-md w-full space-y-2.5 sm:space-y-3 bg-black/40 backdrop-blur-[2px] rounded-3xl border border-[#D4AF37]/70 shadow-[0_15px_45px_rgba(0,0,0,0.6)] ring-1 ring-white/20 relative overflow-hidden"
             >
               {/* Corner Motion Graphic Brackets */}
               <motion.div 
