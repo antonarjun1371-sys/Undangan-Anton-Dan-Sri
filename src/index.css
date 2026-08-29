@@ -3,6 +3,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -10,6 +11,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Off-screen rendering optimization: Skips layout and paint for off-screen sections until scrolled into view */
+.content-visibility-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 
 @layer utilities {
@@ -39,18 +47,12 @@ body {
   }
 
   .glow-gold-box {
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.25), 0 10px 40px rgba(0, 0, 0, 0.08);
-  }
-
-  .laser-sweep-beam {
-    background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.4) 50%, transparent 80%);
-    background-size: 200% 100%;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
   }
 
   .gpu-accelerated {
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
-    will-change: transform, opacity;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -61,15 +63,6 @@ body {
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
-}
-
-@keyframes laserSweep {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
   }
 }
 
@@ -93,212 +86,65 @@ body {
 
 .animate-spin-slow {
   animation: spinSlow 35s linear infinite;
+  transform: translateZ(0);
 }
 
 .animate-spin-reverse {
   animation: spinReverseSlow 25s linear infinite;
+  transform: translateZ(0);
 }
 
-.animate-laser-sweep {
-  animation: laserSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
+/* Optimized falling petals with lightweight 2D/3D hardware transforms */
 @keyframes petalSway1 {
   0% {
-    transform: translate3d(0, -20px, 0) rotateZ(0deg);
+    transform: translate3d(0, -20px, 0) rotate(0deg);
     opacity: 0;
   }
-  8% {
-    opacity: 0.8;
-  }
-  25% {
-    transform: translate3d(35px, 25vh, 0) rotateZ(45deg);
+  10% {
+    opacity: 0.75;
   }
   50% {
-    transform: translate3d(-25px, 50vh, 0) rotateZ(90deg);
-  }
-  75% {
-    transform: translate3d(30px, 75vh, 0) rotateZ(135deg);
+    transform: translate3d(-20px, 50vh, 0) rotate(90deg);
   }
   90% {
-    opacity: 0.8;
+    opacity: 0.75;
   }
   100% {
-    transform: translate3d(-15px, 105vh, 0) rotateZ(180deg);
+    transform: translate3d(15px, 105vh, 0) rotate(180deg);
     opacity: 0;
   }
 }
 
 @keyframes petalSway2 {
   0% {
-    transform: translate3d(0, -20px, 0) rotateZ(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.75;
-  }
-  30% {
-    transform: translate3d(-40px, 30vh, 0) rotateZ(-60deg);
-  }
-  60% {
-    transform: translate3d(30px, 60vh, 0) rotateZ(30deg);
-  }
-  85% {
-    opacity: 0.75;
-  }
-  100% {
-    transform: translate3d(-20px, 105vh, 0) rotateZ(-120deg);
-    opacity: 0;
-  }
-}
-
-@keyframes petalSway3 {
-  0% {
-    transform: translate3d(0, -20px, 0) rotateZ(0deg);
-    opacity: 0;
-  }
-  12% {
-    opacity: 0.85;
-  }
-  35% {
-    transform: translate3d(45px, 35vh, 0) rotateZ(75deg);
-  }
-  70% {
-    transform: translate3d(-35px, 70vh, 0) rotateZ(150deg);
-  }
-  92% {
-    opacity: 0.85;
-  }
-  100% {
-    transform: translate3d(20px, 105vh, 0) rotateZ(210deg);
-    opacity: 0;
-  }
-}
-
-@keyframes petalSway4 {
-  0% {
-    transform: translate3d(0, -20px, 0) rotateZ(0deg);
+    transform: translate3d(0, -20px, 0) rotate(0deg);
     opacity: 0;
   }
   10% {
     opacity: 0.7;
-  }
-  40% {
-    transform: translate3d(-30px, 40vh, 0) rotateZ(-45deg);
-  }
-  75% {
-    transform: translate3d(25px, 75vh, 0) rotateZ(45deg);
-  }
-  88% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate3d(-10px, 105vh, 0) rotateZ(-90deg);
-    opacity: 0;
-  }
-}
-
-@keyframes petalFlutter3D {
-  0%, 100% {
-    transform: rotateX(0deg) rotateY(0deg) scale(1);
-  }
-  25% {
-    transform: rotateX(45deg) rotateY(60deg) scale(0.95);
   }
   50% {
-    transform: rotateX(90deg) rotateY(120deg) scale(0.9);
+    transform: translate3d(25px, 50vh, 0) rotate(-90deg);
   }
-  75% {
-    transform: rotateX(45deg) rotateY(60deg) scale(0.95);
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(-15px, 105vh, 0) rotate(-180deg);
+    opacity: 0;
   }
 }
 
 .petal-sway-1 {
   animation: petalSway1 linear infinite;
-  will-change: transform, opacity;
 }
 
 .petal-sway-2 {
   animation: petalSway2 linear infinite;
-  will-change: transform, opacity;
-}
-
-.petal-sway-3 {
-  animation: petalSway3 linear infinite;
-  will-change: transform, opacity;
-}
-
-.petal-sway-4 {
-  animation: petalSway4 linear infinite;
-  will-change: transform, opacity;
 }
 
 .petal-flutter {
-  animation: petalFlutter3D 4s ease-in-out infinite;
   transform-origin: center center;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* Keyframe animations for Motion Path, Shimmer, Emphasis, and Float */
-@keyframes floatGentle {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-8px) rotate(2deg);
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
-    transform: scale(1.03);
-  }
-}
-
-@keyframes motionPathSway {
-  0% {
-    offset-distance: 0%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    offset-distance: 100%;
-    opacity: 0;
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.animate-float-gentle {
-  animation: floatGentle 4s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulseGlow 3s ease-in-out infinite;
-}
-
-.shimmer-gold {
-  background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, rgba(255,235,160,0.6) 50%, rgba(212,175,55,0.1) 100%);
-  background-size: 200% 100%;
-  animation: shimmer 3s infinite;
 }
 
 /* Custom Leaflet Map styling */
@@ -306,7 +152,7 @@ body {
   background: #FFFDF9 !important;
   color: #2C2622 !important;
   border-radius: 12px !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.12) !important;
   font-family: 'Plus Jakarta Sans', sans-serif !important;
   border: 1px solid rgba(212, 175, 55, 0.3) !important;
 }
@@ -318,63 +164,41 @@ body {
 
 /* Hide scrollbar completely across all browsers and elements */
 * {
-  scrollbar-width: none !important; /* Firefox */
-  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 *::-webkit-scrollbar {
-  display: none !important; /* Chrome, Safari, Opera */
+  display: none !important;
   width: 0px !important;
   height: 0px !important;
   background: transparent !important;
 }
 
-/* Falling Particle Stardust Animations */
+/* Highly Optimized Falling Stardust Animations */
 @keyframes particleFall {
   0% {
-    transform: translateY(-30px);
+    transform: translate3d(0, -20px, 0);
     opacity: 0;
   }
-  6% {
+  8% {
     opacity: 1;
   }
-  94% {
+  92% {
     opacity: 1;
   }
   100% {
-    transform: translateY(105vh);
+    transform: translate3d(0, 105vh, 0);
     opacity: 0;
   }
 }
 
 @keyframes particleSway {
   0%, 100% {
-    transform: translateX(-15px) rotate(0deg);
+    transform: translate3d(-10px, 0, 0);
   }
   50% {
-    transform: translateX(15px) rotate(180deg);
-  }
-}
-
-@keyframes particleTwinkle {
-  0%, 100% {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.25);
-    opacity: 1;
-  }
-}
-
-@keyframes particlePulse {
-  0%, 100% {
-    transform: scale(0.85);
-    filter: brightness(0.9);
-  }
-  50% {
-    transform: scale(1.3);
-    filter: brightness(1.4);
+    transform: translate3d(10px, 0, 0);
   }
 }
 
@@ -382,7 +206,6 @@ body {
   animation-name: particleFall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  will-change: transform, opacity;
 }
 
 .particle-sway {
@@ -390,17 +213,6 @@ body {
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  will-change: transform;
-}
-
-.particle-twinkle {
-  animation: particleTwinkle 3.2s ease-in-out infinite;
-  transform-origin: center center;
-}
-
-.particle-pulse {
-  animation: particlePulse 2.8s ease-in-out infinite;
-  transform-origin: center center;
 }
 
 

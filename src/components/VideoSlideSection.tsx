@@ -9,11 +9,8 @@ interface VideoSlideSectionProps {
 
 export const VideoSlideSection: React.FC<VideoSlideSectionProps> = ({ onVideoComplete }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [hasScrolled, setHasScrolled] = useState<boolean>(false);
 
   const scrollToSlide2 = () => {
-    if (hasScrolled) return;
-    setHasScrolled(true);
     const slide2 = document.getElementById('slide-2') || document.getElementById('hero-section');
     if (slide2) {
       slide2.scrollIntoView({ behavior: 'smooth' });
@@ -39,24 +36,10 @@ export const VideoSlideSection: React.FC<VideoSlideSectionProps> = ({ onVideoCom
     }
   }, []);
 
-  const handleEnded = () => {
-    scrollToSlide2();
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      const { currentTime, duration } = videoRef.current;
-      // Trigger smooth scroll when video has 0.2s left
-      if (duration > 0 && duration - currentTime <= 0.2) {
-        scrollToSlide2();
-      }
-    }
-  };
-
   return (
     <section 
       id="slide-1"
-      className="relative w-full h-screen min-h-screen bg-black flex items-center justify-center overflow-hidden select-none"
+      className="relative w-full h-[100dvh] min-h-[100dvh] bg-black flex items-center justify-center overflow-hidden select-none"
     >
       {/* Fullscreen Video Canvas - Pure Animation Effect Without Video Controls */}
       <div className="relative w-full h-full flex items-center justify-center">
@@ -66,11 +49,15 @@ export const VideoSlideSection: React.FC<VideoSlideSectionProps> = ({ onVideoCom
           playsInline
           muted
           autoPlay
+          loop={false}
           controls={false}
           disablePictureInPicture
           controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
-          onEnded={handleEnded}
-          onTimeUpdate={handleTimeUpdate}
+          onEnded={() => {
+            if (videoRef.current) {
+              videoRef.current.pause();
+            }
+          }}
           className="w-full h-full object-cover select-none pointer-events-none"
           style={{
             outline: 'none',
@@ -85,14 +72,14 @@ export const VideoSlideSection: React.FC<VideoSlideSectionProps> = ({ onVideoCom
       {/* Subtle Scroll Down Prompt at the Bottom of Slide 1 */}
       <motion.button
         initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 0.8, y: 0 }}
+        animate={{ opacity: 0.85, y: 0 }}
         transition={{ delay: 1.5, duration: 0.8 }}
         whileHover={{ scale: 1.05, opacity: 1 }}
         whileTap={{ scale: 0.95 }}
         onClick={scrollToSlide2}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1 text-[#FCF6BA] cursor-pointer focus:outline-none"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1 text-[#FCF6BA] cursor-pointer focus:outline-none px-4 py-2"
       >
-        <span className="font-cinzel text-[10px] tracking-[0.25em] uppercase font-semibold text-[#D4AF37]/90 drop-shadow-md">
+        <span className="font-cinzel text-[11px] sm:text-xs tracking-[0.25em] uppercase font-semibold text-[#D4AF37] drop-shadow-md">
           Geser ke Undangan
         </span>
         <motion.div

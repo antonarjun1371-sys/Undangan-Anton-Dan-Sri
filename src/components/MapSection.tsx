@@ -103,7 +103,7 @@ export const MapSection: React.FC = () => {
   };
 
   return (
-    <section id="lokasi" className="py-20 px-4 max-w-5xl mx-auto scroll-mt-12 relative overflow-hidden">
+    <section id="lokasi" className="py-20 px-3 sm:px-4 max-w-5xl mx-auto scroll-mt-12 relative overflow-hidden content-visibility-auto">
       {/* Motion Graphic Floating Diamonds */}
       <MotionGraphicDiamond x="6%" y="20%" size={20} delay={0.2} duration={5.8} />
       <MotionGraphicDiamond x="92%" y="30%" size={24} delay={1.6} duration={6.2} />

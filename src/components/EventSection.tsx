@@ -6,7 +6,7 @@ import { KineticLightBeam, KineticLineFlourish, MotionGraphicDiamond, KineticPul
 
 export const EventSection: React.FC = () => {
   return (
-    <section id="acara" className="py-20 px-4 bg-[#FAF5EC]/80 border-y border-[#E6DCCF] scroll-mt-12 relative overflow-hidden">
+    <section id="acara" className="py-20 px-3 sm:px-4 bg-[#FAF5EC]/80 border-y border-[#E6DCCF] scroll-mt-12 relative overflow-hidden content-visibility-auto">
       {/* Floating Diamonds */}
       <MotionGraphicDiamond x="6%" y="20%" size={20} delay={0.4} duration={6} />
       <MotionGraphicDiamond x="92%" y="25%" size={24} delay={1.8} duration={5.8} />

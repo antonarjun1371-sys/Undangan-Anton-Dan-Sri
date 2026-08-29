@@ -48,26 +48,21 @@ export const HeroSection: React.FC = () => {
   return (
     <section 
       id="slide-2" 
-      className="relative min-h-screen flex flex-col items-center justify-center pt-16 pb-20 px-4 text-center overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-16 pb-20 px-3 sm:px-4 text-center overflow-hidden content-visibility-auto"
     >
       {/* Floating Motion Graphic Diamonds */}
-      <MotionGraphicDiamond x="8%" y="18%" size={22} delay={0.2} duration={5.5} />
-      <MotionGraphicDiamond x="88%" y="22%" size={26} delay={1.8} duration={6} />
-      <MotionGraphicDiamond x="12%" y="75%" size={20} delay={1} duration={5} />
-      <MotionGraphicDiamond x="85%" y="78%" size={24} delay={2.2} duration={6.5} />
-
-      {/* Center Kinetic Sacred Rings In Background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-5 opacity-40">
-        <KineticRings size={480} color="#D4AF37" />
-      </div>
+      <MotionGraphicDiamond x="6%" y="18%" size={20} delay={0.2} duration={5.5} />
+      <MotionGraphicDiamond x="90%" y="22%" size={22} delay={1.8} duration={6} />
+      <MotionGraphicDiamond x="8%" y="75%" size={18} delay={1} duration={5} />
+      <MotionGraphicDiamond x="88%" y="78%" size={20} delay={2.2} duration={6.5} />
 
       {/* Decorative Golden Arch Frame with Motion Graphic Sheen */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 30 }}
+        initial={{ opacity: 0, scale: 0.95, y: 25 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 max-w-2xl w-full mx-auto p-6 md:p-10 rounded-3xl bg-gradient-to-b from-[#FFFDF9]/95 via-[#FAF8F5]/95 to-[#FAF5EC]/95 border-2 border-[#D4AF37]/60 shadow-[0_15px_50px_rgba(0,0,0,0.35)] text-[#2C2622] overflow-hidden ring-1 ring-[#D4AF37]/30"
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 max-w-2xl w-full mx-auto p-5 sm:p-8 md:p-10 rounded-3xl bg-gradient-to-b from-[#FFFDF9]/98 via-[#FAF8F5]/98 to-[#FAF5EC]/98 border-2 border-[#D4AF37]/60 shadow-[0_10px_40px_rgba(0,0,0,0.25)] text-[#2C2622] overflow-hidden ring-1 ring-[#D4AF37]/30"
       >
         {/* Kinetic Laser Shimmer Beam */}
         <KineticLightBeam />

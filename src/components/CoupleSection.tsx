@@ -6,7 +6,7 @@ import { KineticRings, KineticPulseRadar, KineticLineFlourish, KineticLightBeam,
 
 export const CoupleSection: React.FC = () => {
   return (
-    <section id="mempelai" className="py-20 px-4 max-w-5xl mx-auto text-center relative scroll-mt-12 overflow-hidden">
+    <section id="mempelai" className="py-20 px-3 sm:px-4 max-w-5xl mx-auto text-center relative scroll-mt-12 overflow-hidden content-visibility-auto">
       {/* Motion Graphic Floating Sacred Diamonds */}
       <MotionGraphicDiamond x="5%" y="15%" size={20} delay={0.3} duration={6} />
       <MotionGraphicDiamond x="92%" y="18%" size={22} delay={1.5} duration={5.5} />

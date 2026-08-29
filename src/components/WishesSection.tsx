@@ -51,7 +51,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ refreshTrigger }) 
   });
 
   return (
-    <section id="ucapan" className="py-20 px-4 max-w-4xl mx-auto scroll-mt-12 relative overflow-hidden">
+    <section id="ucapan" className="py-20 px-3 sm:px-4 max-w-4xl mx-auto scroll-mt-12 relative overflow-hidden content-visibility-auto">
       {/* Motion Graphic Floating Diamonds */}
       <MotionGraphicDiamond x="7%" y="18%" size={22} delay={0.4} duration={6} />
       <MotionGraphicDiamond x="91%" y="28%" size={24} delay={1.9} duration={5.6} />

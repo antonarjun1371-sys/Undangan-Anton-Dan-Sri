@@ -54,7 +54,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
   };
 
   return (
-    <section id="rsvp" className="py-20 px-4 bg-[#FAF5EC]/80 border-t border-[#E6DCCF] scroll-mt-12 relative overflow-hidden">
+    <section id="rsvp" className="py-20 px-3 sm:px-4 bg-[#FAF5EC]/80 border-t border-[#E6DCCF] scroll-mt-12 relative overflow-hidden content-visibility-auto">
       {/* Motion Graphic Floating Diamonds */}
       <MotionGraphicDiamond x="6%" y="20%" size={20} delay={0.3} duration={6.2} />
       <MotionGraphicDiamond x="92%" y="25%" size={24} delay={1.7} duration={5.8} />

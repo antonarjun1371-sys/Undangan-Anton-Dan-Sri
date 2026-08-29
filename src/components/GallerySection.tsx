@@ -28,7 +28,7 @@ export const GallerySection: React.FC = () => {
   };
 
   return (
-    <section id="galeri" className="py-20 px-4 max-w-5xl mx-auto scroll-mt-12 relative overflow-hidden">
+    <section id="galeri" className="py-20 px-3 sm:px-4 max-w-5xl mx-auto scroll-mt-12 relative overflow-hidden content-visibility-auto">
       {/* Motion Graphic Floating Diamonds */}
       <MotionGraphicDiamond x="5%" y="15%" size={22} delay={0.3} duration={6} />
       <MotionGraphicDiamond x="93%" y="22%" size={24} delay={1.8} duration={5.5} />
