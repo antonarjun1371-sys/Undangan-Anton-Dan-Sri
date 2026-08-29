@@ -39,7 +39,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto no-scrollbar"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0, y: 20 }}

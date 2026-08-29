@@ -15,17 +15,34 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoStart }) => {
 
   useEffect(() => {
     if (autoStart && audioRef.current) {
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => {
-          // If browser policy blocks autostart, user can click manual toggle
-          setIsPlaying(false);
-        });
+      const playAudio = () => {
+        if (!audioRef.current) return;
+        audioRef.current.currentTime = 0;
+        audioRef.current
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((err) => {
+            console.log("Audio play gesture required or blocked:", err);
+            // Fallback retry on window interaction if blocked
+            const onUserInteract = () => {
+              if (audioRef.current && autoStart) {
+                audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+              }
+              window.removeEventListener('click', onUserInteract);
+              window.removeEventListener('touchstart', onUserInteract);
+            };
+            window.addEventListener('click', onUserInteract, { once: true });
+            window.addEventListener('touchstart', onUserInteract, { once: true });
+          });
+      };
+
+      playAudio();
     }
   }, [autoStart]);
 
-  // Hide song info popover after 8 seconds on initial load
+  // Hide song info popover after 7 seconds
   useEffect(() => {
     if (isPlaying) {
       const timer = setTimeout(() => {
@@ -55,14 +72,17 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoStart }) => {
     setIsMuted(!isMuted);
   };
 
+  if (!autoStart) return null;
+
   return (
-    <div className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end space-y-2">
+    <div className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-[70] flex flex-col items-end space-y-2">
       {/* Audio Element */}
       <audio
         ref={audioRef}
         src={BACKGROUND_MUSIC_URL}
         loop
         preload="auto"
+        playsInline
       />
 
       {/* Floating Song Title Pill */}
@@ -86,37 +106,18 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoStart }) => {
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="flex items-center space-x-1.5 p-1.5 rounded-full bg-[#1C1815]/90 backdrop-blur-md border border-[#D4AF37]/50 shadow-2xl text-white"
+        className="flex items-center p-1 rounded-full bg-[#1C1815]/90 backdrop-blur-md border border-[#D4AF37]/50 shadow-xl text-white"
       >
-        {/* Disk Spin Visualizer */}
         <button
           onClick={togglePlay}
-          onMouseEnter={() => setShowInfo(true)}
-          className="relative p-2 rounded-full bg-gradient-to-r from-[#BF953F] to-[#AA771C] text-white hover:scale-105 transition-transform cursor-pointer focus:outline-none shadow-md"
+          className="p-2.5 rounded-full hover:bg-white/10 text-[#FCF6BA] hover:scale-105 transition-transform cursor-pointer focus:outline-none"
           title={isPlaying ? `Jeda Musik (${SONG_INFO.title})` : `Putar Lagu: ${SONG_INFO.title}`}
         >
-          <motion.div
-            animate={{ rotate: isPlaying ? 360 : 0 }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-          >
-            <Disc className="w-5 h-5" />
-          </motion.div>
-          {isPlaying && (
-            <div className="absolute -top-1 -right-1 flex items-end justify-center space-x-[2px] h-3 w-4 bg-[#1C1815]/90 rounded-full p-0.5 border border-[#D4AF37]/60">
-              <span className="w-[2px] bg-[#FCF6BA] rounded-full animate-[bounce_0.8s_infinite_100ms] h-full" />
-              <span className="w-[2px] bg-[#D4AF37] rounded-full animate-[bounce_0.8s_infinite_300ms] h-2/3" />
-              <span className="w-[2px] bg-[#FCF6BA] rounded-full animate-[bounce_0.8s_infinite_200ms] h-5/6" />
-            </div>
+          {isPlaying ? (
+            <Volume2 className="w-4 h-4 text-[#D4AF37] animate-pulse" />
+          ) : (
+            <VolumeX className="w-4 h-4 text-white/60" />
           )}
-        </button>
-
-        {/* Mute Button */}
-        <button
-          onClick={toggleMute}
-          className="p-2 text-white/80 hover:text-white transition-colors cursor-pointer"
-          title={isMuted ? "Bunyikan" : "Bisukan"}
-        >
-          {isMuted ? <VolumeX className="w-4 h-4 text-red-300" /> : <Volume2 className="w-4 h-4 text-[#D4AF37]" />}
         </button>
       </motion.div>
     </div>

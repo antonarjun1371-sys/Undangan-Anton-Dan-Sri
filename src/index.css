@@ -38,11 +38,69 @@ body {
     border-image: linear-gradient(to bottom right, #D4AF37, #AA771C) 1;
   }
 
+  .glow-gold-box {
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.25), 0 10px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .laser-sweep-beam {
+    background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.4) 50%, transparent 80%);
+    background-size: 200% 100%;
+  }
+
   .gpu-accelerated {
     transform: translateZ(0);
     backface-visibility: hidden;
     will-change: transform, opacity;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes laserSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverseSlow {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 35s linear infinite;
+}
+
+.animate-spin-reverse {
+  animation: spinReverseSlow 25s linear infinite;
+}
+
+.animate-laser-sweep {
+  animation: laserSweep 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes petalSway1 {
@@ -258,16 +316,17 @@ body {
   z-index: 10 !important;
 }
 
-/* Hide scrollbar for clean applet feel */
-::-webkit-scrollbar {
-  width: 6px;
+/* Hide scrollbar completely across all browsers and elements */
+* {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
 }
-::-webkit-scrollbar-track {
-  background: #FAF8F5;
-}
-::-webkit-scrollbar-thumb {
-  background: #D4AF37;
-  border-radius: 999px;
+
+*::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera */
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
 }
 
 /* Falling Particle Stardust Animations */

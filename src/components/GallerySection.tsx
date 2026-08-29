@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { GALLERY_PHOTOS } from '../data/weddingData';
 import { ChevronLeft, ChevronRight, X, Sparkles, Maximize2, Play, Pause, LayoutGrid, Columns } from 'lucide-react';
+import { KineticLightBeam, KineticLineFlourish, MotionGraphicDiamond } from './MotionGraphicElements';
 
 export const GallerySection: React.FC = () => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
@@ -27,23 +28,28 @@ export const GallerySection: React.FC = () => {
   };
 
   return (
-    <section id="galeri" className="py-20 px-4 max-w-5xl mx-auto scroll-mt-12">
+    <section id="galeri" className="py-20 px-4 max-w-5xl mx-auto scroll-mt-12 relative overflow-hidden">
+      {/* Motion Graphic Floating Diamonds */}
+      <MotionGraphicDiamond x="5%" y="15%" size={22} delay={0.3} duration={6} />
+      <MotionGraphicDiamond x="93%" y="22%" size={24} delay={1.8} duration={5.5} />
+
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
-        className="text-center mb-12 space-y-3"
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center mb-12 space-y-3 relative z-10"
       >
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 text-[#8B6B23] text-xs font-cinzel tracking-widest">
-          <Sparkles className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#8B6B23] text-xs font-cinzel font-bold tracking-widest border border-[#D4AF37]/30">
+          <Sparkles className="w-3.5 h-3.5 text-[#D4AF37] animate-pulse" />
           <span>Galeri Momen Bahagia</span>
         </div>
-        <h2 className="font-serif-wedding text-4xl sm:text-5xl font-bold text-[#2C2622]">
+        <h2 className="font-serif-wedding text-4xl sm:text-5xl font-extrabold text-[#2C2622]">
           Kisah & Kenangan
         </h2>
-        <p className="font-serif-wedding italic text-base text-[#786C62]">
+        <KineticLineFlourish className="text-[#D4AF37]" />
+        <p className="font-serif-wedding italic text-base sm:text-lg text-[#786C62]">
           Kumpulan momen indah perjalanan kasih Anton & Sri
         </p>
       </motion.div>
@@ -53,9 +59,12 @@ export const GallerySection: React.FC = () => {
         initial={{ opacity: 0, y: 50, scale: 0.96 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.9, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-4 sm:p-7 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] overflow-hidden mb-8 ring-1 ring-[#D4AF37]/20"
+        transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-4 sm:p-7 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] overflow-hidden mb-8 ring-1 ring-[#D4AF37]/20 hover:border-[#D4AF37] transition-all"
       >
+        {/* Kinetic Laser Shimmer Beam */}
+        <KineticLightBeam />
+
         {/* Corner Filigree Accents */}
         <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
         <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
@@ -142,7 +151,13 @@ export const GallerySection: React.FC = () => {
       </motion.div>
 
       {/* Gallery Control Bar with Grid vs Masonry View Filter */}
-      <div className="flex items-center justify-between mb-6 px-1">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7 }}
+        className="flex items-center justify-between mb-6 px-1"
+      >
         <div className="flex items-center space-x-2 text-xs font-cinzel text-[#7A5B1E] tracking-wider uppercase font-bold">
           <span>Koleksi Foto</span>
           <span className="text-[#4A3E35]">({GALLERY_PHOTOS.length})</span>
@@ -175,25 +190,26 @@ export const GallerySection: React.FC = () => {
             <span className="hidden sm:inline">Masonry</span>
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* THUMBNAIL GALLERY DISPLAY */}
       <AnimatePresence mode="wait">
         {viewMode === 'grid' ? (
           <motion.div
             key="grid-view"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5"
           >
             {GALLERY_PHOTOS.map((photo, index) => (
               <motion.div
                 key={photo.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.6, delay: (index % 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ scale: 1.03, y: -4 }}
                 onClick={() => setSelectedImageIndex(index)}
                 className="relative aspect-4/3 rounded-2xl overflow-hidden border-2 border-[#E6DCCF] hover:border-[#D4AF37] shadow-[0_4px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.25)] cursor-pointer group bg-white transition-all duration-300 ring-2 ring-white"
@@ -217,18 +233,19 @@ export const GallerySection: React.FC = () => {
         ) : (
           <motion.div
             key="masonry-view"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="columns-2 sm:columns-3 gap-3 sm:gap-5 space-y-3 sm:space-y-5"
           >
             {GALLERY_PHOTOS.map((photo, index) => (
               <motion.div
                 key={photo.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.6, delay: (index % 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ scale: 1.02, y: -3 }}
                 onClick={() => setSelectedImageIndex(index)}
                 className="break-inside-avoid relative rounded-2xl overflow-hidden border-2 border-[#E6DCCF] hover:border-[#D4AF37] shadow-[0_4px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.25)] cursor-pointer group bg-white transition-all duration-300 ring-2 ring-white"

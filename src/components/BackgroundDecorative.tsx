@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
+import { motion } from 'motion/react';
 import { MotionPathPetals } from './MotionPathPetals';
 import { FallingParticles } from './FallingParticles';
+import { KineticRings } from './MotionGraphicElements';
 
 export const BackgroundDecorative: React.FC = () => {
   // Sparkle / Bokeh particles in the background
@@ -29,7 +31,18 @@ export const BackgroundDecorative: React.FC = () => {
         }}
       />
 
-      {/* 3. SOFT ORGANIC WATERCOLOR & GOLD LIGHT GLOWS */}
+      {/* 3. CONTINUOUS KINETIC MANDALA MOTION GRAPHICS (Ambient Background) */}
+      <div className="absolute top-[10%] -left-24 opacity-25">
+        <KineticRings size={360} color="#D4AF37" />
+      </div>
+      <div className="absolute top-[50%] -right-24 opacity-25">
+        <KineticRings size={420} color="#AA771C" />
+      </div>
+      <div className="absolute bottom-[5%] left-1/4 opacity-20">
+        <KineticRings size={300} color="#D4AF37" />
+      </div>
+
+      {/* 4. SOFT ORGANIC WATERCOLOR & GOLD LIGHT GLOWS */}
       {/* Top Ambient Glow */}
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-radial from-[#FCE8B3]/50 via-[#F3E5AB]/20 to-transparent rounded-full blur-3xl opacity-70" />
       {/* Mid Left Ambient Glow */}
@@ -37,8 +50,8 @@ export const BackgroundDecorative: React.FC = () => {
       {/* Mid Right Ambient Glow */}
       <div className="absolute top-[65%] -right-32 w-[600px] h-[600px] bg-radial from-[#EEDAA2]/45 via-[#FAF5EC]/20 to-transparent rounded-full blur-3xl opacity-65" />
 
-      {/* 4. LARGE ARABESQUE / GUNUNGAN WATERMARK EMBOSS (Subtle, elegant) */}
-      <div className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[480px] h-[480px] opacity-[0.06] text-[#8B6B23] pointer-events-none">
+      {/* 5. LARGE ARABESQUE / GUNUNGAN WATERMARK EMBOSS (Animated slow rotation) */}
+      <div className="absolute top-[18%] left-1/2 -translate-x-1/2 w-[480px] h-[480px] opacity-[0.06] text-[#8B6B23] pointer-events-none animate-spin-slow">
         <svg viewBox="0 0 200 200" fill="currentColor" className="w-full h-full">
           <path d="M100 5 C75 35 40 70 40 110 C40 150 70 185 100 195 C130 185 160 150 160 110 C160 70 125 35 100 5 Z M100 25 C120 50 145 80 145 110 C145 140 120 170 100 178 C80 170 55 140 55 110 C55 80 80 50 100 25 Z" />
           <circle cx="100" cy="110" r="28" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -46,7 +59,7 @@ export const BackgroundDecorative: React.FC = () => {
         </svg>
       </div>
 
-      <div className="absolute top-[58%] left-1/2 -translate-x-1/2 w-[520px] h-[520px] opacity-[0.05] text-[#8B6B23] pointer-events-none">
+      <div className="absolute top-[58%] left-1/2 -translate-x-1/2 w-[520px] h-[520px] opacity-[0.05] text-[#8B6B23] pointer-events-none animate-spin-reverse">
         <svg viewBox="0 0 200 200" fill="currentColor" className="w-full h-full">
           <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" strokeWidth="1.5" />
           <circle cx="100" cy="100" r="65" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
@@ -54,7 +67,7 @@ export const BackgroundDecorative: React.FC = () => {
         </svg>
       </div>
 
-      {/* 5. ROYAL GOLD FILIGREE CORNER ORNAMENTS */}
+      {/* 6. ROYAL GOLD FILIGREE CORNER ORNAMENTS */}
       {/* Top Left Corner */}
       <div className="absolute top-0 left-0 w-28 h-28 sm:w-36 sm:h-36 opacity-30 text-[#B38728]">
         <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
@@ -99,7 +112,7 @@ export const BackgroundDecorative: React.FC = () => {
         </svg>
       </div>
 
-      {/* 6. FLOATING BOKEH / FAIRY DUST GLOWS */}
+      {/* 7. FLOATING BOKEH / FAIRY DUST GLOWS */}
       {sparkles.map((sp) => (
         <div
           key={sp.id}
@@ -115,11 +128,12 @@ export const BackgroundDecorative: React.FC = () => {
         />
       ))}
 
-      {/* 7. FALLING FLOWER PETALS (Rose, Sakura, Melati, Gold) */}
+      {/* 8. FALLING FLOWER PETALS (Rose, Sakura, Melati, Gold) */}
       <MotionPathPetals />
 
-      {/* 8. SLOW DRIFTING ROMANTIC GOLD & ROSE STARDUST PARTICLES */}
+      {/* 9. SLOW DRIFTING ROMANTIC GOLD & ROSE STARDUST PARTICLES */}
       <FallingParticles />
     </div>
   );
 };
+

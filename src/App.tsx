@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { CoverEnvelope } from './components/CoverEnvelope';
+import { VideoSlideSection } from './components/VideoSlideSection';
 import { BackgroundDecorative } from './components/BackgroundDecorative';
 import { MusicPlayer } from './components/MusicPlayer';
 import { HeaderNav } from './components/HeaderNav';
@@ -13,7 +14,7 @@ import { RsvpSection } from './components/RsvpSection';
 import { WishesSection } from './components/WishesSection';
 import { DigitalGiftModal } from './components/DigitalGiftModal';
 import { ShareModal } from './components/ShareModal';
-import { Gift, Share2, Heart, Sparkles } from 'lucide-react';
+import { Gift, Share2, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function App() {
@@ -34,12 +35,14 @@ export default function App() {
 
   const handleOpenEnvelope = () => {
     setIsOpenEnvelope(true);
-    // Initial welcome confetti burst!
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    // Initial welcome celebratory confetti burst!
     confetti({
-      particleCount: 100,
-      spread: 80,
-      origin: { y: 0.5 },
-      colors: ['#D4AF37', '#BF953F', '#FCF6BA', '#AA771C']
+      particleCount: 120,
+      spread: 90,
+      origin: { y: 0.4 },
+      colors: ['#D4AF37', '#BF953F', '#FCF6BA', '#AA771C', '#FFFFFF']
     });
   };
 
@@ -55,17 +58,24 @@ export default function App() {
       {/* LUXURY TEXTURED BACKGROUND, PATTERNS & PETALS ANIMATION LAYER */}
       <BackgroundDecorative />
 
-      {/* BACKGROUND MUSIC PLAYER */}
+      {/* BACKGROUND MUSIC PLAYER (Starts playing immediately when clicking open envelope) */}
       <MusicPlayer autoStart={isOpenEnvelope} />
 
-      {/* MAIN INVITATION CONTENT (Shown after envelope opened or smoothly visible) */}
+      {/* MAIN INVITATION CONTENT */}
       {isOpenEnvelope && (
-        <>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           {/* FLOATING HEADER NAVIGATION */}
           <HeaderNav />
 
           <main className="relative z-10 pb-28">
-            {/* HERO SECTION */}
+            {/* SLIDE 1: FULLSCREEN MOTION GRAPHIC VIDEO SLIDE */}
+            <VideoSlideSection />
+
+            {/* SLIDE 2: HERO SECTION / INVITATION DETAILS */}
             <HeroSection />
 
             {/* COUPLE SECTION */}
@@ -90,13 +100,19 @@ export default function App() {
             <WishesSection refreshTrigger={refreshWishes} />
 
             {/* FLOATING ACTION BUTTONS FOOTER BAR */}
-            <section className="py-12 px-4 max-w-xl mx-auto text-center space-y-6">
+            <motion.section
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              className="py-12 px-4 max-w-xl mx-auto text-center space-y-6"
+            >
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsGiftModalOpen(true)}
-                  className="py-3 px-6 rounded-full bg-gradient-to-r from-[#BF953F] to-[#AA771C] text-white text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg cursor-pointer"
+                  className="py-3.5 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] text-white text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:shadow-[0_8px_25px_rgba(212,175,55,0.35)] transition-all cursor-pointer"
                 >
                   <Gift className="w-4 h-4" />
                   <span>Hadiah / Amplop Digital</span>
@@ -106,7 +122,7 @@ export default function App() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setIsShareModalOpen(true)}
-                  className="py-3 px-6 rounded-full bg-[#2C2622] text-[#FCF6BA] text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg cursor-pointer"
+                  className="py-3.5 px-6 rounded-full bg-[#2C2622] text-[#FCF6BA] text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:bg-[#3D352E] transition-all cursor-pointer border border-[#D4AF37]/40"
                 >
                   <Share2 className="w-4 h-4 text-[#D4AF37]" />
                   <span>Bagikan Undangan</span>
@@ -115,7 +131,7 @@ export default function App() {
 
               {/* FOOTER ACKNOWLEDGEMENT */}
               <div className="pt-8 border-t border-[#E6DCCF] text-center space-y-2">
-                <p className="font-serif-wedding text-xl font-bold text-[#8B6B23]">
+                <p className="font-serif-wedding text-2xl font-bold text-[#8B6B23]">
                   Anton & Sri
                 </p>
                 <p className="text-xs text-[#786C62] flex items-center justify-center space-x-1">
@@ -126,9 +142,9 @@ export default function App() {
                   10 September 2026 • Probolinggo, Jawa Timur
                 </p>
               </div>
-            </section>
+            </motion.section>
           </main>
-        </>
+        </motion.div>
       )}
 
       {/* DIGITAL GIFT MODAL */}

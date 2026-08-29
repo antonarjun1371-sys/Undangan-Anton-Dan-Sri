@@ -2,11 +2,16 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Clock, MapPin, Sparkles, Navigation } from 'lucide-react';
 import { AKAD_EVENT, RESEPSI_EVENT, GOOGLE_MAPS_LINK } from '../data/weddingData';
+import { KineticLightBeam, KineticLineFlourish, MotionGraphicDiamond, KineticPulseRadar } from './MotionGraphicElements';
 
 export const EventSection: React.FC = () => {
   return (
-    <section id="acara" className="py-20 px-4 bg-[#FAF5EC]/80 border-y border-[#E6DCCF] scroll-mt-12">
-      <div className="max-w-5xl mx-auto text-center">
+    <section id="acara" className="py-20 px-4 bg-[#FAF5EC]/80 border-y border-[#E6DCCF] scroll-mt-12 relative overflow-hidden">
+      {/* Floating Diamonds */}
+      <MotionGraphicDiamond x="6%" y="20%" size={20} delay={0.4} duration={6} />
+      <MotionGraphicDiamond x="92%" y="25%" size={24} delay={1.8} duration={5.8} />
+
+      <div className="max-w-5xl mx-auto text-center relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -15,14 +20,15 @@ export const EventSection: React.FC = () => {
           transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-14 space-y-3"
         >
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 text-[#8B6B23] text-xs font-cinzel tracking-widest">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#8B6B23] text-xs font-cinzel font-bold tracking-widest border border-[#D4AF37]/30">
+            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37] animate-pulse" />
             <span>Rangkaian Acara</span>
           </div>
-          <h2 className="font-serif-wedding text-4xl sm:text-5xl font-bold text-[#2C2622]">
+          <h2 className="font-serif-wedding text-4xl sm:text-5xl font-extrabold text-[#2C2622]">
             Jadwal Pernikahan
           </h2>
-          <p className="font-serif-wedding italic text-base text-[#786C62]">
+          <KineticLineFlourish className="text-[#D4AF37]" />
+          <p className="font-serif-wedding italic text-base sm:text-lg text-[#786C62]">
             Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir
           </p>
         </motion.div>
@@ -35,17 +41,23 @@ export const EventSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-7 sm:p-9 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] flex flex-col justify-between text-center space-y-6 hover:border-[#D4AF37] hover:shadow-[0_15px_45px_rgba(180,140,70,0.22)] transition-all duration-500 overflow-hidden ring-1 ring-[#D4AF37]/20"
+            className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-7 sm:p-9 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] flex flex-col justify-between text-center space-y-6 hover:border-[#D4AF37] hover:shadow-[0_15px_45px_rgba(180,140,70,0.25)] transition-all duration-500 overflow-hidden ring-1 ring-[#D4AF37]/20 group"
           >
+            {/* Kinetic Laser Beam */}
+            <KineticLightBeam />
+
             {/* Corner Filigree Accents */}
             <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
             <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
             <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-[#D4AF37]/60 rounded-bl pointer-events-none" />
             <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/60 rounded-br pointer-events-none" />
 
-            <div className="space-y-4">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-[#FAF5EC] to-[#F3E5AB]/40 border border-[#D4AF37]/50 flex items-center justify-center text-[#8B6B23] shadow-md ring-2 ring-white">
-                <Calendar className="w-8 h-8 text-[#AA771C]" />
+            <div className="space-y-4 relative z-10">
+              <div className="relative w-16 h-16 mx-auto flex items-center justify-center">
+                <KineticPulseRadar color="#D4AF37" className="w-20 h-20" />
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#FAF5EC] to-[#F3E5AB]/40 border border-[#D4AF37]/50 flex items-center justify-center text-[#8B6B23] shadow-md ring-2 ring-white relative z-10 group-hover:rotate-6 transition-transform">
+                  <Calendar className="w-8 h-8 text-[#AA771C]" />
+                </div>
               </div>
 
               <div>
@@ -81,7 +93,7 @@ export const EventSection: React.FC = () => {
               href={GOOGLE_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-5 rounded-full bg-[#2C2622] hover:bg-[#3D352E] text-[#FCF6BA] font-semibold text-xs sm:text-sm flex items-center justify-center space-x-2 border border-[#D4AF37]/40 transition-all shadow-md active:scale-[0.98] cursor-pointer"
+              className="relative z-10 w-full py-3.5 px-5 rounded-full bg-[#2C2622] hover:bg-[#3D352E] text-[#FCF6BA] font-semibold text-xs sm:text-sm flex items-center justify-center space-x-2 border border-[#D4AF37]/40 transition-all shadow-md active:scale-[0.98] cursor-pointer"
             >
               <Navigation className="w-4 h-4 text-[#D4AF37]" />
               <span>Petunjuk Arah Akad</span>
@@ -94,17 +106,23 @@ export const EventSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.85, delay: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-7 sm:p-9 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] flex flex-col justify-between text-center space-y-6 hover:border-[#D4AF37] hover:shadow-[0_15px_45px_rgba(180,140,70,0.22)] transition-all duration-500 overflow-hidden ring-1 ring-[#D4AF37]/20"
+            className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-7 sm:p-9 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] flex flex-col justify-between text-center space-y-6 hover:border-[#D4AF37] hover:shadow-[0_15px_45px_rgba(180,140,70,0.25)] transition-all duration-500 overflow-hidden ring-1 ring-[#D4AF37]/20 group"
           >
+            {/* Kinetic Laser Beam */}
+            <KineticLightBeam />
+
             {/* Corner Filigree Accents */}
             <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
             <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
             <div className="absolute bottom-3 left-3 w-5 h-5 border-b-2 border-l-2 border-[#D4AF37]/60 rounded-bl pointer-events-none" />
             <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/60 rounded-br pointer-events-none" />
 
-            <div className="space-y-4">
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-[#FAF5EC] to-[#F3E5AB]/40 border border-[#D4AF37]/50 flex items-center justify-center text-[#8B6B23] shadow-md ring-2 ring-white">
-                <Sparkles className="w-8 h-8 text-[#AA771C]" />
+            <div className="space-y-4 relative z-10">
+              <div className="relative w-16 h-16 mx-auto flex items-center justify-center">
+                <KineticPulseRadar color="#D4AF37" className="w-20 h-20" />
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#FAF5EC] to-[#F3E5AB]/40 border border-[#D4AF37]/50 flex items-center justify-center text-[#8B6B23] shadow-md ring-2 ring-white relative z-10 group-hover:rotate-6 transition-transform">
+                  <Sparkles className="w-8 h-8 text-[#AA771C]" />
+                </div>
               </div>
 
               <div>
@@ -140,9 +158,9 @@ export const EventSection: React.FC = () => {
               href={GOOGLE_MAPS_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-5 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] hover:brightness-105 text-white font-semibold text-xs sm:text-sm flex items-center justify-center space-x-2 border border-[#AA771C]/50 transition-all shadow-md active:scale-[0.98] cursor-pointer"
+              className="relative z-10 w-full py-3.5 px-5 rounded-full bg-[#2C2622] hover:bg-[#3D352E] text-[#FCF6BA] font-semibold text-xs sm:text-sm flex items-center justify-center space-x-2 border border-[#D4AF37]/40 transition-all shadow-md active:scale-[0.98] cursor-pointer"
             >
-              <Navigation className="w-4 h-4" />
+              <Navigation className="w-4 h-4 text-[#D4AF37]" />
               <span>Petunjuk Arah Resepsi</span>
             </a>
           </motion.div>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Navigation, Copy, Check, ExternalLink, Sparkles } from 'lucide-react';
 import { VENUE_COORDS, GOOGLE_MAPS_LINK, WAZE_MAPS_LINK } from '../data/weddingData';
+import { KineticLightBeam, KineticLineFlourish, MotionGraphicDiamond, KineticPulseRadar } from './MotionGraphicElements';
 
 // Declare Leaflet globally since loaded via script tag in index.html
 declare const L: any;
@@ -102,34 +103,42 @@ export const MapSection: React.FC = () => {
   };
 
   return (
-    <section id="lokasi" className="py-20 px-4 max-w-5xl mx-auto scroll-mt-12">
+    <section id="lokasi" className="py-20 px-4 max-w-5xl mx-auto scroll-mt-12 relative overflow-hidden">
+      {/* Motion Graphic Floating Diamonds */}
+      <MotionGraphicDiamond x="6%" y="20%" size={20} delay={0.2} duration={5.8} />
+      <MotionGraphicDiamond x="92%" y="30%" size={24} delay={1.6} duration={6.2} />
+
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 45 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-10 space-y-3"
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center mb-10 space-y-3 relative z-10"
       >
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#D4AF37]/10 text-[#8B6B23] text-xs font-cinzel tracking-widest">
-          <Sparkles className="w-3.5 h-3.5" />
+        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#8B6B23] text-xs font-cinzel font-bold tracking-widest border border-[#D4AF37]/30">
+          <Sparkles className="w-3.5 h-3.5 text-[#D4AF37] animate-pulse" />
           <span>Denah & Peta Interaktif</span>
         </div>
-        <h2 className="font-serif-wedding text-4xl sm:text-5xl font-bold text-[#2C2622]">
+        <h2 className="font-serif-wedding text-4xl sm:text-5xl font-extrabold text-[#2C2622]">
           Lokasi Acara
         </h2>
-        <p className="font-serif-wedding italic text-base text-[#786C62]">
+        <KineticLineFlourish className="text-[#D4AF37]" />
+        <p className="font-serif-wedding italic text-base sm:text-lg text-[#786C62]">
           Koordinat Presisi: <span className="font-sans font-semibold text-[#8B6B23]">{VENUE_COORDS.lat}, {VENUE_COORDS.lng}</span>
         </p>
       </motion.div>
 
       {/* Map Card */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] space-y-6 overflow-hidden ring-1 ring-[#D4AF37]/20"
+        initial={{ opacity: 0, y: 50, scale: 0.96 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] space-y-6 overflow-hidden ring-1 ring-[#D4AF37]/20 hover:border-[#D4AF37] transition-all"
       >
+        {/* Kinetic Light Beam */}
+        <KineticLightBeam />
+
         {/* Subtle Corner Filigree Accents */}
         <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
         <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
@@ -143,7 +152,7 @@ export const MapSection: React.FC = () => {
         />
 
         {/* Direction Actions Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 relative z-10">
           <div className="flex items-center space-x-2 text-xs sm:text-sm font-medium text-[#786C62]">
             <MapPin className="w-4 h-4 text-[#D4AF37]" />
             <span>Probolinggo, Jawa Timur</span>
