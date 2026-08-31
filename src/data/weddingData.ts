@@ -13,9 +13,11 @@ import coupleGallery2Img from '../assets/images/couple_gallery_2_1786035154936.j
 import ringsDetailImg from '../assets/images/wedding_rings_detail_1786035171458.jpeg';
 import weddingFotoImg from '../assets/images/wedding foto.jpeg';
 import weddingSongAudio from '../assets/wedding-song.mp3';
+import captureBgImg from '../assets/Capture.PNG';
 
 export const HERO_COVER_IMAGE = heroCoverImg;
 export const COUPLE_MAIN_IMAGE = coupleMainImg;
+export const CAPTURE_BACKGROUND_IMAGE = captureBgImg;
 
 // ==================== DATA MEMPELAI PRIA & WANITA ====================
 export const GROOM: CouplePerson = {

@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion } from 'motion/react';
+import React, { useRef, useEffect } from 'react';
 import motionJawaVideo from '../assets/Motion-Jawa.mp4';
 import { ChevronDown } from 'lucide-react';
 
@@ -38,10 +37,10 @@ export const VideoSlideSection: React.FC<VideoSlideSectionProps> = ({ onVideoCom
 
   return (
     <section 
-      id="slide-1"
+      id="slide-1" 
       className="relative w-full h-[100dvh] min-h-[100dvh] bg-black flex items-center justify-center overflow-hidden select-none"
     >
-      {/* Fullscreen Video Canvas - Pure Animation Effect Without Video Controls */}
+      {/* Fullscreen Video Canvas */}
       <div className="relative w-full h-full flex items-center justify-center">
         <video
           ref={videoRef}
@@ -69,26 +68,18 @@ export const VideoSlideSection: React.FC<VideoSlideSectionProps> = ({ onVideoCom
         <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.85)]" />
       </div>
 
-      {/* Subtle Scroll Down Prompt at the Bottom of Slide 1 */}
-      <motion.button
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 0.85, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-        whileHover={{ scale: 1.05, opacity: 1 }}
-        whileTap={{ scale: 0.95 }}
+      {/* Scroll Down Prompt at the Bottom of Slide 1 */}
+      <button
         onClick={scrollToSlide2}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1 text-[#FCF6BA] cursor-pointer focus:outline-none px-4 py-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1 text-[#FCF6BA] cursor-pointer focus:outline-none px-4 py-2 hover:scale-105 transition-transform"
       >
         <span className="font-cinzel text-[11px] sm:text-xs tracking-[0.25em] uppercase font-semibold text-[#D4AF37] drop-shadow-md">
           Geser ke Undangan
         </span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-        >
+        <div>
           <ChevronDown className="w-5 h-5 text-[#FCF6BA] drop-shadow-lg" />
-        </motion.div>
-      </motion.button>
+        </div>
+      </button>
     </section>
   );
 };

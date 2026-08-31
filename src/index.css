@@ -22,10 +22,16 @@ body {
 
 @layer utilities {
   .font-serif-wedding {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
   }
   .font-script {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Pinyon Script', 'Alex Brush', 'Great Vibes', cursive;
+  }
+  .font-pinyon {
+    font-family: 'Pinyon Script', 'Alex Brush', 'Great Vibes', cursive;
+  }
+  .font-alex {
+    font-family: 'Alex Brush', 'Great Vibes', cursive;
   }
   .font-cinzel {
     font-family: 'Cinzel', serif;

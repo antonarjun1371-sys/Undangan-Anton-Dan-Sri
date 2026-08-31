@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Music, Volume2, VolumeX, Disc } from 'lucide-react';
+import { Music, Volume2, VolumeX } from 'lucide-react';
 import { BACKGROUND_MUSIC_URL, SONG_INFO } from '../data/weddingData';
 
 interface MusicPlayerProps {
@@ -66,12 +65,6 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoStart }) => {
     }
   };
 
-  const toggleMute = () => {
-    if (!audioRef.current) return;
-    audioRef.current.muted = !isMuted;
-    setIsMuted(!isMuted);
-  };
-
   if (!autoStart) return null;
 
   return (
@@ -86,40 +79,29 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ autoStart }) => {
       />
 
       {/* Floating Song Title Pill */}
-      <AnimatePresence>
-        {(showInfo || isPlaying) && (
-          <motion.div
-            initial={{ opacity: 0, x: 20, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 20, scale: 0.9 }}
-            className="hidden sm:flex items-center space-x-2 py-1 px-3 rounded-full bg-[#1C1815]/90 backdrop-blur-md border border-[#D4AF37]/40 shadow-lg text-[11px] text-amber-200"
-          >
-            <Music className="w-3 h-3 text-[#D4AF37] animate-pulse" />
-            <span className="font-medium text-[#FAF8F5]">{SONG_INFO.title}</span>
-            <span className="text-[#D4AF37]">•</span>
-            <span className="text-amber-200/80">{SONG_INFO.artist}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {(showInfo || isPlaying) && (
+        <div className="hidden sm:flex items-center space-x-2 py-1 px-3 rounded-full bg-[#1C1815]/90 backdrop-blur-md border border-[#D4AF37]/40 shadow-lg text-[11px] text-amber-200">
+          <Music className="w-3 h-3 text-[#D4AF37]" />
+          <span className="font-medium text-[#FAF8F5]">{SONG_INFO.title}</span>
+          <span className="text-[#D4AF37]">•</span>
+          <span className="text-amber-200/80">{SONG_INFO.artist}</span>
+        </div>
+      )}
 
       {/* Floating Control Badge */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="flex items-center p-1 rounded-full bg-[#1C1815]/90 backdrop-blur-md border border-[#D4AF37]/50 shadow-xl text-white"
-      >
+      <div className="flex items-center p-1 rounded-full bg-[#1C1815]/90 backdrop-blur-md border border-[#D4AF37]/50 shadow-xl text-white">
         <button
           onClick={togglePlay}
           className="p-2.5 rounded-full hover:bg-white/10 text-[#FCF6BA] hover:scale-105 transition-transform cursor-pointer focus:outline-none"
           title={isPlaying ? `Jeda Musik (${SONG_INFO.title})` : `Putar Lagu: ${SONG_INFO.title}`}
         >
           {isPlaying ? (
-            <Volume2 className="w-4 h-4 text-[#D4AF37] animate-pulse" />
+            <Volume2 className="w-4 h-4 text-[#D4AF37]" />
           ) : (
             <VolumeX className="w-4 h-4 text-white/60" />
           )}
         </button>
-      </motion.div>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
 import { CoverEnvelope } from './components/CoverEnvelope';
 import { VideoSlideSection } from './components/VideoSlideSection';
 import { BackgroundDecorative } from './components/BackgroundDecorative';
@@ -48,31 +47,27 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-[#FAF8F5] text-[#2C2622] font-sans antialiased overflow-x-hidden">
-      {/* COVER ENVELOPE OVERLAY (Entrance, Emphasis, Exit Animations) */}
+      {/* COVER ENVELOPE OVERLAY */}
       <CoverEnvelope
         isOpen={isOpenEnvelope}
         guestName={guestName}
         onOpen={handleOpenEnvelope}
       />
 
-      {/* LUXURY TEXTURED BACKGROUND, PATTERNS & PETALS ANIMATION LAYER */}
+      {/* LUXURY TEXTURED BACKGROUND & PATTERNS */}
       <BackgroundDecorative />
 
-      {/* BACKGROUND MUSIC PLAYER (Starts playing immediately when clicking open envelope) */}
+      {/* BACKGROUND MUSIC PLAYER */}
       <MusicPlayer autoStart={isOpenEnvelope} />
 
       {/* MAIN INVITATION CONTENT */}
       {isOpenEnvelope && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
+        <div>
           {/* FLOATING HEADER NAVIGATION */}
           <HeaderNav />
 
           <main className="relative z-10 pb-28">
-            {/* SLIDE 1: FULLSCREEN MOTION GRAPHIC VIDEO SLIDE */}
+            {/* SLIDE 1: FULLSCREEN VIDEO SLIDE */}
             <VideoSlideSection />
 
             {/* SLIDE 2: HERO SECTION / INVITATION DETAILS */}
@@ -100,51 +95,41 @@ export default function App() {
             <WishesSection refreshTrigger={refreshWishes} />
 
             {/* FLOATING ACTION BUTTONS FOOTER BAR */}
-            <motion.section
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              className="py-12 px-4 max-w-xl mx-auto text-center space-y-6"
-            >
+            <section className="py-12 px-4 max-w-xl mx-auto text-center space-y-6">
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   onClick={() => setIsGiftModalOpen(true)}
-                  className="py-3.5 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] text-white text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:shadow-[0_8px_25px_rgba(212,175,55,0.35)] transition-all cursor-pointer"
+                  className="py-3.5 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] text-white text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:shadow-[0_8px_25px_rgba(212,175,55,0.35)] transition-all cursor-pointer hover:scale-105 active:scale-95"
                 >
                   <Gift className="w-4 h-4" />
                   <span>Hadiah / Amplop Digital</span>
-                </motion.button>
+                </button>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   onClick={() => setIsShareModalOpen(true)}
-                  className="py-3.5 px-6 rounded-full bg-[#2C2622] text-[#FCF6BA] text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:bg-[#3D352E] transition-all cursor-pointer border border-[#D4AF37]/40"
+                  className="py-3.5 px-6 rounded-full bg-[#2C2622] text-[#FCF6BA] text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:bg-[#3D352E] transition-all cursor-pointer border border-[#D4AF37]/40 hover:scale-105 active:scale-95"
                 >
                   <Share2 className="w-4 h-4 text-[#D4AF37]" />
                   <span>Bagikan Undangan</span>
-                </motion.button>
+                </button>
               </div>
 
               {/* FOOTER ACKNOWLEDGEMENT */}
-              <div className="pt-8 border-t border-[#E6DCCF] text-center space-y-2">
-                <p className="font-serif-wedding text-2xl font-bold text-[#8B6B23]">
-                  Anton & Sri
+              <div className="pt-8 border-t border-[#D4AF37]/40 text-center space-y-2">
+                <p className="font-pinyon text-4xl sm:text-5xl font-bold text-[#5A1422] tracking-wide select-none drop-shadow-sm">
+                  Anton &amp; Sri
                 </p>
-                <p className="text-xs text-[#786C62] flex items-center justify-center space-x-1">
+                <p className="font-serif-wedding text-sm sm:text-base text-[#3E101A] font-medium flex items-center justify-center space-x-1.5 italic">
                   <span>Dibuat dengan ketulusan dan kehangatan cinta</span>
-                  <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500 inline" />
+                  <Heart className="w-4 h-4 text-rose-600 fill-rose-600 inline animate-pulse" />
                 </p>
-                <p className="text-[10px] text-[#A09386]">
+                <p className="font-cinzel text-xs font-bold text-[#5A1422] tracking-[0.2em] uppercase">
                   10 September 2026 • Probolinggo, Jawa Timur
                 </p>
               </div>
-            </motion.section>
+            </section>
           </main>
-        </motion.div>
+        </div>
       )}
 
       {/* DIGITAL GIFT MODAL */}

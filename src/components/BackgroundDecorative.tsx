@@ -1,28 +1,37 @@
 import React from 'react';
 import { MotionPathPetals } from './MotionPathPetals';
 import { FallingParticles } from './FallingParticles';
+import captureBg from '../assets/Capture.PNG';
 
 export const BackgroundDecorative: React.FC = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none gpu-accelerated" aria-hidden="true">
-      {/* 1. BASE RICH TEXTURED GRADIENT (Warm Ivory Linen & Antique Champagne) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#FAF6F0] via-[#F6EFE6] to-[#FAF5EC]" />
+      {/* 1. CUSTOM CAPTURE.PNG BACKGROUND IMAGE */}
+      <img
+        src={captureBg}
+        alt="Latar Belakang Undangan"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        referrerPolicy="no-referrer"
+      />
 
-      {/* 2. REPEATING SEAMLESS LUXURY BATIK / DAMASK PATTERN */}
+      {/* 2. SUBTLE WARM OPACITY OVERLAY TO PRESERVE HIGH TEXT LEGIBILITY */}
+      <div className="absolute inset-0 bg-[#FAF6F0]/25 mix-blend-soft-light" />
+
+      {/* 3. REPEATING SEAMLESS LUXURY BATIK / DAMASK PATTERN WATERMARK */}
       <div 
-        className="absolute inset-0 opacity-[0.10] mix-blend-multiply"
+        className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B38728' stroke-width='0.75' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Kawung Petals --%3E%3Cpath d='M0,40 Q20,20 40,40 Q20,60 0,40' /%3E%3Cpath d='M80,40 Q60,20 40,40 Q60,60 80,40' /%3E%3Cpath d='M40,0 Q20,20 40,40 Q20,60 40,0' /%3E%3Cpath d='M40,80 Q20,60 40,40 Q60,60 40,80' /%3E%3C!-- Corner Flowers --%3E%3Ccircle cx='40' cy='40' r='3.5' fill='%23D4AF37' fill-opacity='0.5' /%3E%3Ccircle cx='0' cy='0' r='4' fill='%23D4AF37' fill-opacity='0.4' /%3E%3Ccircle cx='80' cy='0' r='4' fill='%23D4AF37' fill-opacity='0.4' /%3E%3Ccircle cx='0' cy='80' r='4' fill='%23D4AF37' fill-opacity='0.4' /%3E%3Ccircle cx='80' cy='80' r='4' fill='%23D4AF37' fill-opacity='0.4' /%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B38728' stroke-width='0.75' stroke-linecap='round' stroke-linejoin='round'%3E%3C!-- Kawung Petals --%3E%3Cpath d='M0,40 Q20,20 40,40 Q20,60 0,40' /%3E%3Cpath d='M80,40 Q60,20 40,40 Q60,60 80,40' /%3E%3Cpath d='M40,0 Q20,20 40,40 Q60,20 40,0' /%3E%3Cpath d='M40,80 Q20,60 40,40 Q60,60 40,80' /%3E%3C!-- Corner Flowers --%3E%3Ccircle cx='40' cy='40' r='3.5' fill='%23D4AF37' fill-opacity='0.5' /%3E%3Ccircle cx='0' cy='0' r='4' fill='%23D4AF37' fill-opacity='0.4' /%3E%3Ccircle cx='80' cy='0' r='4' fill='%23D4AF37' fill-opacity='0.4' /%3E%3Ccircle cx='0' cy='80' r='4' fill='%23D4AF37' fill-opacity='0.4' /%3E%3Ccircle cx='80' cy='80' r='4' fill='%23D4AF37' fill-opacity='0.4' /%3E%3C/g%3E%3C/svg%3E")`,
           backgroundSize: '80px 80px',
         }}
       />
 
-      {/* 3. SOFT AMBIENT CORNER GLOWS (Without heavy multi-layer blur filters) */}
-      <div className="absolute -top-20 -left-20 w-80 h-80 bg-[#FCE8B3]/35 rounded-full blur-2xl opacity-60" />
-      <div className="absolute top-1/2 -right-20 w-80 h-80 bg-[#F9D2D2]/25 rounded-full blur-2xl opacity-50" />
-      <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-[#EEDAA2]/30 rounded-full blur-2xl opacity-50" />
+      {/* 4. SOFT AMBIENT CORNER GLOWS */}
+      <div className="absolute -top-20 -left-20 w-80 h-80 bg-[#FCE8B3]/25 rounded-full blur-2xl opacity-50" />
+      <div className="absolute top-1/2 -right-20 w-80 h-80 bg-[#F9D2D2]/20 rounded-full blur-2xl opacity-40" />
+      <div className="absolute -bottom-20 left-1/3 w-80 h-80 bg-[#EEDAA2]/25 rounded-full blur-2xl opacity-40" />
 
-      {/* 4. ROYAL GOLD FILIGREE CORNER ORNAMENTS */}
+      {/* 5. ROYAL GOLD FILIGREE CORNER ORNAMENTS */}
       <div className="absolute top-0 left-0 w-24 h-24 sm:w-36 sm:h-36 opacity-25 text-[#B38728]">
         <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-full h-full">
           <path d="M0 0 L45 0 C45 25 25 45 0 45 Z" fill="currentColor" fillOpacity="0.08" />
@@ -39,13 +48,14 @@ export const BackgroundDecorative: React.FC = () => {
         </svg>
       </div>
 
-      {/* 5. FALLING FLOWER PETALS */}
+      {/* 6. FALLING FLOWER PETALS */}
       <MotionPathPetals />
 
-      {/* 6. SLOW DRIFTING ROMANTIC GOLD & ROSE STARDUST PARTICLES */}
+      {/* 7. SLOW DRIFTING ROMANTIC GOLD & ROSE STARDUST PARTICLES */}
       <FallingParticles />
     </div>
   );
 };
+
 
 

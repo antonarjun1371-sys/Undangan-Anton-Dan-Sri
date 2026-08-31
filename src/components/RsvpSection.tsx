@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import { Send, CheckCircle2, User, Users, MessageSquare, Sparkles, AlertCircle } from 'lucide-react';
 import { submitRsvp } from '../services/rsvpService';
-import { KineticLightBeam, KineticLineFlourish, MotionGraphicDiamond } from './MotionGraphicElements';
+import { KineticLineFlourish } from './MotionGraphicElements';
 
 interface RsvpSectionProps {
   onRsvpSuccess: () => void;
@@ -55,41 +54,22 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
 
   return (
     <section id="rsvp" className="py-20 px-3 sm:px-4 bg-[#FAF5EC]/80 border-t border-[#E6DCCF] scroll-mt-12 relative overflow-hidden content-visibility-auto">
-      {/* Motion Graphic Floating Diamonds */}
-      <MotionGraphicDiamond x="6%" y="20%" size={20} delay={0.3} duration={6.2} />
-      <MotionGraphicDiamond x="92%" y="25%" size={24} delay={1.7} duration={5.8} />
-
       <div className="max-w-2xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 45 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-10 space-y-3"
-        >
-          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#8B6B23] text-xs font-cinzel font-bold tracking-widest border border-[#D4AF37]/30">
-            <Sparkles className="w-3.5 h-3.5 text-[#D4AF37] animate-pulse" />
-            <span>Konfirmasi Kehadiran</span>
+        <div className="text-center mb-8 space-y-2.5">
+          <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FAF5EC] text-[#5A1422] text-xs font-cinzel font-bold tracking-[0.2em] border border-[#D4AF37] shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-[#AA771C]" />
+            <span>KONFIRMASI KEHADIRAN</span>
           </div>
-          <h2 className="font-serif-wedding text-4xl sm:text-5xl font-extrabold text-[#2C2622]">
-            RSVP & Ucapan
+          <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-[#2F1418] tracking-wider drop-shadow-sm uppercase">
+            RSVP &amp; Doa Restu
           </h2>
           <KineticLineFlourish className="text-[#D4AF37]" />
-          <p className="font-serif-wedding italic text-base sm:text-lg text-[#786C62]">
+          <p className="font-serif-wedding italic text-base sm:text-xl text-[#3E101A] font-medium leading-relaxed">
             Kehadiran dan doa restu Anda adalah karunia terindah bagi kami
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.96 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] overflow-hidden ring-1 ring-[#D4AF37]/20 hover:border-[#D4AF37] transition-all"
-        >
-          {/* Kinetic Laser Beam */}
-          <KineticLightBeam />
-
+        <div className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-6 sm:p-10 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] overflow-hidden ring-1 ring-[#D4AF37]/20 hover:border-[#D4AF37] transition-all">
           {/* Subtle Corner Filigree Accents */}
           <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
           <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
@@ -97,11 +77,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
           <div className="absolute bottom-3 right-3 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/60 rounded-br pointer-events-none" />
 
           {success && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-start space-x-3 shadow-sm"
-            >
+            <div className="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-start space-x-3 shadow-sm">
               <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold">Terima Kasih!</p>
@@ -109,7 +85,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
                   Konfirmasi RSVP dan ucapan Anda telah berhasil tersimpan dalam buku tamu kami.
                 </p>
               </div>
-            </motion.div>
+            </div>
           )}
 
           {errorMsg && (
@@ -168,11 +144,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
 
             {/* Jumlah Tamu (if hadir) */}
             {status === 'hadir' && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                className="space-y-1.5"
-              >
+              <div className="space-y-1.5">
                 <label className="text-xs font-cinzel font-bold text-[#8B6B23] uppercase tracking-wider block">
                   Jumlah Tamu Yang Hadir
                 </label>
@@ -189,7 +161,7 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
                     <option value={4}>4+ Orang (Rombongan Keluarga)</option>
                   </select>
                 </div>
-              </motion.div>
+              </div>
             )}
 
             {/* Pesan & Doa Restu */}
@@ -210,18 +182,16 @@ export const RsvpSection: React.FC<RsvpSectionProps> = ({ onRsvpSuccess, default
             </div>
 
             {/* Submit Button */}
-            <motion.button
+            <button
               type="submit"
               disabled={loading}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] hover:brightness-105 text-white font-bold text-sm sm:text-base flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl border border-[#AA771C]/50 transition-all cursor-pointer disabled:opacity-50"
+              className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] hover:brightness-105 active:scale-95 text-white font-bold text-sm sm:text-base flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl border border-[#AA771C]/50 transition-all cursor-pointer disabled:opacity-50"
             >
               <Send className="w-4 h-4" />
               <span>{loading ? 'Mengirim Konfirmasi...' : 'Kirim RSVP & Doa Restu'}</span>
-            </motion.button>
+            </button>
           </form>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
