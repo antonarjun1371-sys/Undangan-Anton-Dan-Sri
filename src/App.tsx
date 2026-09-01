@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { CoverEnvelope } from './components/CoverEnvelope';
 import { VideoSlideSection } from './components/VideoSlideSection';
 import { BackgroundDecorative } from './components/BackgroundDecorative';
@@ -61,76 +62,81 @@ export default function App() {
       <MusicPlayer autoStart={isOpenEnvelope} />
 
       {/* MAIN INVITATION CONTENT */}
-      {isOpenEnvelope && (
-        <div>
-          {/* FLOATING HEADER NAVIGATION */}
-          <HeaderNav />
+      <div className={isOpenEnvelope ? 'opacity-100 transition-opacity duration-500' : 'opacity-0 pointer-events-none'}>
+        {/* FLOATING HEADER NAVIGATION */}
+        <HeaderNav />
 
-          <main className="relative z-10 pb-28">
-            {/* SLIDE 1: FULLSCREEN VIDEO SLIDE */}
-            <VideoSlideSection />
+        <main className="relative z-10 pb-28">
+          {/* SLIDE 1: FULLSCREEN VIDEO SLIDE */}
+          <VideoSlideSection active={isOpenEnvelope} />
 
-            {/* SLIDE 2: HERO SECTION / INVITATION DETAILS */}
-            <HeroSection />
+          {/* SLIDE 2: HERO SECTION / INVITATION DETAILS */}
+          <HeroSection />
 
-            {/* COUPLE SECTION */}
-            <CoupleSection />
+          {/* COUPLE SECTION */}
+          <CoupleSection />
 
-            {/* EVENT SCHEDULE SECTION */}
-            <EventSection />
+          {/* EVENT SCHEDULE SECTION */}
+          <EventSection />
 
-            {/* INTERACTIVE MAP SECTION */}
-            <MapSection />
+          {/* INTERACTIVE MAP SECTION */}
+          <MapSection />
 
-            {/* GALLERY SLIDESHOW & LIGHTBOX */}
-            <GallerySection />
+          {/* GALLERY SLIDESHOW & LIGHTBOX */}
+          <GallerySection />
 
-            {/* RSVP FORM SECTION */}
-            <RsvpSection
-              defaultName={guestName}
-              onRsvpSuccess={() => setRefreshWishes(prev => prev + 1)}
-            />
+          {/* RSVP FORM SECTION */}
+          <RsvpSection
+            defaultName={guestName}
+            onRsvpSuccess={() => setRefreshWishes(prev => prev + 1)}
+          />
 
-            {/* WISHES & GUESTBOOK SECTION */}
-            <WishesSection refreshTrigger={refreshWishes} />
+          {/* WISHES & GUESTBOOK SECTION */}
+          <WishesSection refreshTrigger={refreshWishes} />
 
-            {/* FLOATING ACTION BUTTONS FOOTER BAR */}
-            <section className="py-12 px-4 max-w-xl mx-auto text-center space-y-6">
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <button
-                  onClick={() => setIsGiftModalOpen(true)}
-                  className="py-3.5 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] text-white text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:shadow-[0_8px_25px_rgba(212,175,55,0.35)] transition-all cursor-pointer hover:scale-105 active:scale-95"
-                >
-                  <Gift className="w-4 h-4" />
-                  <span>Hadiah / Amplop Digital</span>
-                </button>
+          {/* FLOATING ACTION BUTTONS FOOTER BAR */}
+          <motion.section 
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            style={{ willChange: 'transform, opacity' }}
+            className="py-12 px-4 max-w-xl mx-auto text-center space-y-6"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <button
+                onClick={() => setIsGiftModalOpen(true)}
+                className="py-3.5 px-6 rounded-full bg-gradient-to-r from-[#BF953F] via-[#D4AF37] to-[#AA771C] text-white text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:shadow-[0_8px_25px_rgba(212,175,55,0.35)] transition-all cursor-pointer hover:scale-105 active:scale-95"
+              >
+                <Gift className="w-4 h-4" />
+                <span>Hadiah / Amplop Digital</span>
+              </button>
 
-                <button
-                  onClick={() => setIsShareModalOpen(true)}
-                  className="py-3.5 px-6 rounded-full bg-[#2C2622] text-[#FCF6BA] text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:bg-[#3D352E] transition-all cursor-pointer border border-[#D4AF37]/40 hover:scale-105 active:scale-95"
-                >
-                  <Share2 className="w-4 h-4 text-[#D4AF37]" />
-                  <span>Bagikan Undangan</span>
-                </button>
-              </div>
+              <button
+                onClick={() => setIsShareModalOpen(true)}
+                className="py-3.5 px-6 rounded-full bg-[#2C2622] text-[#FCF6BA] text-xs sm:text-sm font-semibold flex items-center space-x-2 shadow-lg hover:bg-[#3D352E] transition-all cursor-pointer border border-[#D4AF37]/40 hover:scale-105 active:scale-95"
+              >
+                <Share2 className="w-4 h-4 text-[#D4AF37]" />
+                <span>Bagikan Undangan</span>
+              </button>
+            </div>
 
-              {/* FOOTER ACKNOWLEDGEMENT */}
-              <div className="pt-8 border-t border-[#D4AF37]/40 text-center space-y-2">
-                <p className="font-pinyon text-4xl sm:text-5xl font-bold text-[#5A1422] tracking-wide select-none drop-shadow-sm">
-                  Anton &amp; Sri
-                </p>
-                <p className="font-serif-wedding text-sm sm:text-base text-[#3E101A] font-medium flex items-center justify-center space-x-1.5 italic">
-                  <span>Dibuat dengan ketulusan dan kehangatan cinta</span>
-                  <Heart className="w-4 h-4 text-rose-600 fill-rose-600 inline animate-pulse" />
-                </p>
-                <p className="font-cinzel text-xs font-bold text-[#5A1422] tracking-[0.2em] uppercase">
-                  10 September 2026 • Probolinggo, Jawa Timur
-                </p>
-              </div>
-            </section>
-          </main>
-        </div>
-      )}
+            {/* FOOTER ACKNOWLEDGEMENT */}
+            <div className="pt-8 border-t border-[#D4AF37]/40 text-center space-y-2">
+              <p className="font-pinyon text-4xl sm:text-5xl font-bold text-[#5A1422] tracking-wide select-none drop-shadow-sm">
+                Anton &amp; Sri
+              </p>
+              <p className="font-serif-wedding text-sm sm:text-base text-[#3E101A] font-medium flex items-center justify-center space-x-1.5 italic">
+                <span>Dibuat dengan ketulusan dan kehangatan cinta</span>
+                <Heart className="w-4 h-4 text-rose-600 fill-rose-600 inline animate-pulse" />
+              </p>
+              <p className="font-cinzel text-xs font-bold text-[#5A1422] tracking-[0.2em] uppercase">
+                10 September 2026 • Probolinggo, Jawa Timur
+              </p>
+            </div>
+          </motion.section>
+        </main>
+      </div>
 
       {/* DIGITAL GIFT MODAL */}
       <DigitalGiftModal

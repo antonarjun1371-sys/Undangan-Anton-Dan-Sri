@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 import { MapPin, Navigation, Copy, Check, ExternalLink, Sparkles } from 'lucide-react';
 import { VENUE_COORDS, GOOGLE_MAPS_LINK, WAZE_MAPS_LINK } from '../data/weddingData';
 import { KineticLineFlourish } from './MotionGraphicElements';
@@ -103,7 +104,14 @@ export const MapSection: React.FC = () => {
 
   return (
     <section id="lokasi" className="pt-8 pb-10 sm:pt-10 sm:pb-12 px-3 sm:px-4 max-w-5xl mx-auto scroll-mt-12 relative overflow-hidden content-visibility-auto">
-      <div className="text-center mb-6 space-y-2.5 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        style={{ willChange: 'transform, opacity' }}
+        className="text-center mb-6 space-y-2.5 relative z-10"
+      >
         <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FAF5EC] text-[#5A1422] text-xs font-cinzel font-bold tracking-[0.2em] border border-[#D4AF37] shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-[#AA771C]" />
           <span>DENAH & PETA INTERAKTIF</span>
@@ -115,10 +123,17 @@ export const MapSection: React.FC = () => {
         <p className="font-serif-wedding italic text-base sm:text-xl text-[#3E101A] font-medium leading-relaxed">
           Koordinat Presisi: <span className="font-sans font-bold text-[#5A1422]">{VENUE_COORDS.lat}, {VENUE_COORDS.lng}</span>
         </p>
-      </div>
+      </motion.div>
 
       {/* Map Card */}
-      <div className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] space-y-6 overflow-hidden ring-1 ring-[#D4AF37]/20 hover:border-[#D4AF37] transition-all">
+      <motion.div 
+        initial={{ opacity: 0, y: 45, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 1.15, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        style={{ willChange: 'transform, opacity' }}
+        className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-5 sm:p-8 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] space-y-6 overflow-hidden ring-1 ring-[#D4AF37]/20 hover:border-[#D4AF37] transition-all transform-gpu"
+      >
         {/* Subtle Corner Filigree Accents */}
         <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
         <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
@@ -168,7 +183,7 @@ export const MapSection: React.FC = () => {
             </a>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

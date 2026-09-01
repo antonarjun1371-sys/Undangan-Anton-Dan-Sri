@@ -1,15 +1,16 @@
 import React from 'react';
 import { MotionPathPetals } from './MotionPathPetals';
 import { FallingParticles } from './FallingParticles';
-import captureBg from '../assets/Capture.PNG';
+import captureBg from '../assets/Capture.webp';
 
 export const BackgroundDecorative: React.FC = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none gpu-accelerated" aria-hidden="true">
-      {/* 1. CUSTOM CAPTURE.PNG BACKGROUND IMAGE */}
+      {/* 1. CUSTOM CAPTURE.WEBP BACKGROUND IMAGE */}
       <img
         src={captureBg}
         alt="Latar Belakang Undangan"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover object-center"
         referrerPolicy="no-referrer"
       />

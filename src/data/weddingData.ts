@@ -7,13 +7,13 @@
 
 import { CouplePerson, EventDetail, GalleryPhoto, BankAccount } from '../types';
 
-import heroCoverImg from '../assets/images/wedding_hero_cover_1786035117896.jpeg';
-import coupleMainImg from '../assets/images/couple_portrait_main_1786035134752.jpeg';
-import coupleGallery2Img from '../assets/images/couple_gallery_2_1786035154936.jpeg';
-import ringsDetailImg from '../assets/images/wedding_rings_detail_1786035171458.jpeg';
-import weddingFotoImg from '../assets/images/wedding foto.jpeg';
+import heroCoverImg from '../assets/images/wedding_hero_cover_1786035117896.webp';
+import coupleMainImg from '../assets/images/couple_portrait_main_1786035134752.webp';
+import coupleGallery2Img from '../assets/images/couple_gallery_2_1786035154936.webp';
+import ringsDetailImg from '../assets/images/wedding_rings_detail_1786035171458.webp';
+import weddingFotoImg from '../assets/images/wedding foto.webp';
 import weddingSongAudio from '../assets/wedding-song.mp3';
-import captureBgImg from '../assets/Capture.PNG';
+import captureBgImg from '../assets/Capture.webp';
 
 export const HERO_COVER_IMAGE = heroCoverImg;
 export const COUPLE_MAIN_IMAGE = coupleMainImg;

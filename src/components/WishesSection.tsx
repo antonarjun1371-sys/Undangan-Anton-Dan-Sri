@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { Heart, MessageSquare, CheckCircle, XCircle, HelpCircle, Sparkles, User, ThumbsUp } from 'lucide-react';
 import { RSVPItem } from '../types';
 import { fetchRsvps, likeRsvp } from '../services/rsvpService';
@@ -66,7 +67,14 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ refreshTrigger }) 
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Title */}
-        <div className="text-center mb-8 space-y-2.5 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="text-center mb-8 space-y-2.5 relative z-10"
+        >
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FAF5EC] text-[#5A1422] text-xs font-cinzel font-bold tracking-[0.2em] border border-[#D4AF37] shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-[#AA771C]" />
             <span>BUKU TAMU &amp; DOA RESTU</span>
@@ -78,10 +86,17 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ refreshTrigger }) 
           <p className="font-serif-wedding italic text-base sm:text-xl text-[#3E101A] font-medium leading-relaxed">
             Kumpulan kehangatan doa dan tulus rasa dari orang-orang tersayang
           </p>
-        </div>
+        </motion.div>
 
       {/* Summary Stats Badges */}
-      <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-8 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-30px" }}
+        transition={{ duration: 1.0, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        style={{ willChange: 'transform, opacity' }}
+        className="grid grid-cols-3 gap-2 sm:gap-4 mb-8 relative z-10"
+      >
         <div className="bg-white p-3 sm:p-4 rounded-2xl border border-[#E6DCCF] text-center shadow-sm hover:border-[#D4AF37]/50 hover:shadow-md transition-all">
           <p className="text-xl sm:text-2xl font-bold text-[#8B6B23] font-serif-wedding">{stats.hadir}</p>
           <p className="text-[10px] sm:text-xs text-[#786C62] uppercase font-medium mt-0.5">Tamu Hadir</p>
@@ -94,10 +109,17 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ refreshTrigger }) 
           <p className="text-xl sm:text-2xl font-bold text-rose-600 font-serif-wedding">{stats.tidakHadir}</p>
           <p className="text-[10px] sm:text-xs text-[#786C62] uppercase font-medium mt-0.5">Berhalangan</p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Filter Tabs */}
-      <div className="flex justify-center space-x-2 mb-6 relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.25 }}
+        style={{ willChange: 'transform, opacity' }}
+        className="flex justify-center space-x-2 mb-6 relative z-10"
+      >
         {[
           { key: 'all', label: 'Semua Ucapan' },
           { key: 'hadir', label: 'Tamu Hadir' },
@@ -115,10 +137,17 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ refreshTrigger }) 
             {tab.label}
           </button>
         ))}
-      </div>
+      </motion.div>
 
       {/* Wishes Feed List */}
-      <div className="space-y-4 max-h-[500px] overflow-y-auto pr-1 relative z-10 no-scrollbar">
+      <motion.div 
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-30px" }}
+        transition={{ duration: 1.0, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        style={{ willChange: 'transform, opacity' }}
+        className="space-y-4 max-h-[500px] overflow-y-auto pr-1 relative z-10 no-scrollbar"
+      >
         {loading ? (
           <div className="text-center py-12 text-sm text-[#786C62]">
             Memuat buku tamu...
@@ -199,7 +228,7 @@ export const WishesSection: React.FC<WishesSectionProps> = ({ refreshTrigger }) 
             </div>
           ))
         )}
-      </div>
+      </motion.div>
       </div>
     </section>
   );

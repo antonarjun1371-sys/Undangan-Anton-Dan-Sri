@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { GALLERY_PHOTOS } from '../data/weddingData';
 import { ChevronLeft, ChevronRight, X, Sparkles, Maximize2, Play, Pause, LayoutGrid, Columns } from 'lucide-react';
 import { KineticLineFlourish } from './MotionGraphicElements';
@@ -43,7 +44,14 @@ export const GallerySection: React.FC = () => {
 
       <div className="max-w-5xl mx-auto relative z-10">
         {/* Title */}
-        <div className="text-center mb-8 space-y-2.5 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="text-center mb-8 space-y-2.5 relative z-10"
+        >
           <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#FAF5EC] text-[#5A1422] text-xs font-cinzel font-bold tracking-[0.2em] border border-[#D4AF37] shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-[#AA771C]" />
             <span>GALERI MOMEN BAHAGIA</span>
@@ -55,10 +63,17 @@ export const GallerySection: React.FC = () => {
           <p className="font-serif-wedding italic text-base sm:text-xl text-[#3E101A] font-medium leading-relaxed">
             Kumpulan momen indah perjalanan kasih Anton &amp; Sri
           </p>
-        </div>
+        </motion.div>
 
       {/* FEATURED SLIDESHOW CAROUSEL */}
-      <div className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-4 sm:p-7 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] overflow-hidden mb-8 ring-1 ring-[#D4AF37]/20 hover:border-[#D4AF37] transition-all">
+      <motion.div 
+        initial={{ opacity: 0, y: 45, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 1.15, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        style={{ willChange: 'transform, opacity' }}
+        className="relative bg-gradient-to-b from-white/95 via-[#FFFDF9]/95 to-[#FAF5EC]/95 backdrop-blur-sm rounded-3xl p-4 sm:p-7 border border-[#D4AF37]/40 shadow-[0_10px_35px_rgba(180,140,70,0.12)] overflow-hidden mb-8 ring-1 ring-[#D4AF37]/20 hover:border-[#D4AF37] transition-all transform-gpu"
+      >
         {/* Corner Filigree Accents */}
         <div className="absolute top-3 left-3 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/60 rounded-tl pointer-events-none" />
         <div className="absolute top-3 right-3 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/60 rounded-tr pointer-events-none" />
@@ -70,6 +85,8 @@ export const GallerySection: React.FC = () => {
             key={activeSlide}
             src={GALLERY_PHOTOS[activeSlide].url}
             alt={GALLERY_PHOTOS[activeSlide].title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -136,10 +153,17 @@ export const GallerySection: React.FC = () => {
             />
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Gallery Control Bar with Grid vs Masonry View Filter */}
-      <div className="flex items-center justify-between mb-6 px-1">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        style={{ willChange: 'transform, opacity' }}
+        className="flex items-center justify-between mb-6 px-1"
+      >
         <div className="flex items-center space-x-2 text-xs font-cinzel text-[#7A5B1E] tracking-wider uppercase font-bold">
           <span>Koleksi Foto</span>
           <span className="text-[#4A3E35]">({GALLERY_PHOTOS.length})</span>
@@ -172,16 +196,21 @@ export const GallerySection: React.FC = () => {
             <span className="hidden sm:inline">Masonry</span>
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* THUMBNAIL GALLERY DISPLAY */}
       {viewMode === 'grid' ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5">
           {GALLERY_PHOTOS.map((photo, index) => (
-            <div
+            <motion.div
               key={photo.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.8, delay: (index % 3) * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: 'transform, opacity' }}
               onClick={() => setSelectedImageIndex(index)}
-              className="relative aspect-4/3 rounded-2xl overflow-hidden border-2 border-[#E6DCCF] hover:border-[#D4AF37] shadow-[0_4px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.25)] cursor-pointer group bg-white transition-all duration-300 ring-2 ring-white"
+              className="relative aspect-4/3 rounded-2xl overflow-hidden border-2 border-[#E6DCCF] hover:border-[#D4AF37] shadow-[0_4px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.25)] cursor-pointer group bg-white transition-all duration-300 ring-2 ring-white transform-gpu"
             >
               <img
                 src={photo.url}
@@ -198,16 +227,21 @@ export const GallerySection: React.FC = () => {
               <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/40 backdrop-blur text-white opacity-0 group-hover:opacity-100 transition-opacity">
                 <Maximize2 className="w-3.5 h-3.5 text-[#FCF6BA]" />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       ) : (
         <div className="columns-2 sm:columns-3 gap-3 sm:gap-5 space-y-3 sm:space-y-5">
           {GALLERY_PHOTOS.map((photo, index) => (
-            <div
+            <motion.div
               key={photo.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.8, delay: (index % 3) * 0.12, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: 'transform, opacity' }}
               onClick={() => setSelectedImageIndex(index)}
-              className="break-inside-avoid relative rounded-2xl overflow-hidden border-2 border-[#E6DCCF] hover:border-[#D4AF37] shadow-[0_4px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.25)] cursor-pointer group bg-white transition-all duration-300 ring-2 ring-white"
+              className="break-inside-avoid relative rounded-2xl overflow-hidden border-2 border-[#E6DCCF] hover:border-[#D4AF37] shadow-[0_4px_15px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(212,175,55,0.25)] cursor-pointer group bg-white transition-all duration-300 ring-2 ring-white transform-gpu"
             >
               <img
                 src={photo.url}
@@ -224,7 +258,7 @@ export const GallerySection: React.FC = () => {
               <div className="absolute top-2 right-2 p-1.5 rounded-full bg-black/40 backdrop-blur text-white opacity-0 group-hover:opacity-100 transition-opacity">
                 <Maximize2 className="w-3.5 h-3.5 text-[#FCF6BA]" />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}
@@ -246,6 +280,8 @@ export const GallerySection: React.FC = () => {
               key={selectedImageIndex}
               src={GALLERY_PHOTOS[selectedImageIndex].url}
               alt={GALLERY_PHOTOS[selectedImageIndex].title}
+              loading="lazy"
+              decoding="async"
               className="max-h-[75vh] w-auto object-contain rounded-xl shadow-2xl"
               referrerPolicy="no-referrer"
             />

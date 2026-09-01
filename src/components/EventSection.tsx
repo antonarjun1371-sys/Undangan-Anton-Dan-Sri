@@ -1,7 +1,8 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { MapPin, Clock } from 'lucide-react';
 import { AKAD_EVENT, RESEPSI_EVENT, GOOGLE_MAPS_LINK } from '../data/weddingData';
-import capture123Img from '../assets/Capture123.PNG';
+import capture123Img from '../assets/Capture123.webp';
 
 export const EventSection: React.FC = () => {
   return (
@@ -23,7 +24,14 @@ export const EventSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 max-w-4xl mx-auto items-center justify-center relative z-10">
         
         {/* ================= 1. AKAD NIKAH CARD ================= */}
-        <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[400px] aspect-[9/14] rounded-[160px] sm:rounded-[190px] shadow-[0_20px_50px_rgba(50,15,25,0.35)] overflow-hidden border-2 sm:border-[3px] border-[#5A1422]/60 group">
+        <motion.div 
+          initial={{ opacity: 0, y: 55, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="relative mx-auto w-full max-w-[360px] sm:max-w-[400px] aspect-[9/14] rounded-[160px] sm:rounded-[190px] shadow-[0_20px_50px_rgba(50,15,25,0.35)] overflow-hidden border-2 sm:border-[3px] border-[#5A1422]/60 group transform-gpu"
+        >
           {/* Background Image Template Capture123 */}
           <img 
             src={capture123Img} 
@@ -46,15 +54,29 @@ export const EventSection: React.FC = () => {
           <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-12 sm:py-14 px-8 text-center text-[#2A181C]">
             
             {/* Top Event Title */}
-            <div className="w-full pt-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.0, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: 'transform, opacity' }}
+              className="w-full pt-4"
+            >
               <h3 className="font-cinzel text-xl sm:text-2xl font-bold tracking-[0.25em] text-[#2A181C] uppercase">
                 AKAD NIKAH
               </h3>
               <div className="w-44 sm:w-52 h-[1px] bg-[#2A181C]/40 mx-auto mt-2.5" />
-            </div>
+            </motion.div>
 
             {/* Date Details (Day, Number, Month Year) */}
-            <div className="my-auto py-2">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.88, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: 'transform, opacity' }}
+              className="my-auto py-2"
+            >
               {/* Day in cursive script */}
               <p className="font-pinyon text-4xl sm:text-5xl text-[#2A181C] italic tracking-wide">
                 Kamis
@@ -77,10 +99,17 @@ export const EventSection: React.FC = () => {
                 </span>
                 <span className="tracking-wide">07:00 WIB s.d Selesai</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Location & Google Maps Button */}
-            <div className="w-full pb-4 space-y-1.5">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.0, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: 'transform, opacity' }}
+              className="w-full pb-4 space-y-1.5"
+            >
               <p className="font-serif-wedding text-base sm:text-lg italic text-[#2A181C]">
                 Lokasi Acara
               </p>
@@ -103,13 +132,20 @@ export const EventSection: React.FC = () => {
                   <span className="tracking-wide">Google Maps</span>
                 </a>
               </div>
-            </div>
+            </motion.div>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* ================= 2. RESEPSI CARD ================= */}
-        <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[400px] aspect-[9/14] rounded-[160px] sm:rounded-[190px] shadow-[0_20px_50px_rgba(50,15,25,0.35)] overflow-hidden border-2 sm:border-[3px] border-[#5A1422]/60 group">
+        <motion.div 
+          initial={{ opacity: 0, y: 55, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 1.2, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="relative mx-auto w-full max-w-[360px] sm:max-w-[400px] aspect-[9/14] rounded-[160px] sm:rounded-[190px] shadow-[0_20px_50px_rgba(50,15,25,0.35)] overflow-hidden border-2 sm:border-[3px] border-[#5A1422]/60 group transform-gpu"
+        >
           {/* Background Image Template Capture123 */}
           <img 
             src={capture123Img} 
@@ -132,15 +168,29 @@ export const EventSection: React.FC = () => {
           <div className="relative z-10 w-full h-full flex flex-col items-center justify-between py-12 sm:py-14 px-8 text-center text-[#2A181C]">
             
             {/* Top Event Title */}
-            <div className="w-full pt-4">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.0, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: 'transform, opacity' }}
+              className="w-full pt-4"
+            >
               <h3 className="font-cinzel text-xl sm:text-2xl font-bold tracking-[0.25em] text-[#2A181C] uppercase">
                 RESEPSI
               </h3>
               <div className="w-44 sm:w-52 h-[1px] bg-[#2A181C]/40 mx-auto mt-2.5" />
-            </div>
+            </motion.div>
 
             {/* Date Details (Day, Number, Month Year) */}
-            <div className="my-auto py-2">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.88, y: 25 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: 'transform, opacity' }}
+              className="my-auto py-2"
+            >
               {/* Day in cursive script */}
               <p className="font-pinyon text-4xl sm:text-5xl text-[#2A181C] italic tracking-wide">
                 Kamis
@@ -163,10 +213,17 @@ export const EventSection: React.FC = () => {
                 </span>
                 <span className="tracking-wide">14:00 - 17:00 WIB</span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Location & Google Maps Button */}
-            <div className="w-full pb-4 space-y-1.5">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.0, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              style={{ willChange: 'transform, opacity' }}
+              className="w-full pb-4 space-y-1.5"
+            >
               <p className="font-serif-wedding text-base sm:text-lg italic text-[#2A181C]">
                 Lokasi Acara
               </p>
@@ -189,10 +246,10 @@ export const EventSection: React.FC = () => {
                   <span className="tracking-wide">Google Maps</span>
                 </a>
               </div>
-            </div>
+            </motion.div>
 
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

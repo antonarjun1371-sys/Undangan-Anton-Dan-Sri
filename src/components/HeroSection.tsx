@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, Download, Sparkles } from 'lucide-react';
-import { HERO_COVER_IMAGE, WEDDING_DATE, WEDDING_DATE_STRING } from '../data/weddingData';
-import { KineticRings, KineticLineFlourish } from './MotionGraphicElements';
+import { motion } from 'motion/react';
+import { Calendar, Download } from 'lucide-react';
+import { WEDDING_DATE, WEDDING_DATE_STRING } from '../data/weddingData';
 
 export const HeroSection: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -49,8 +49,15 @@ export const HeroSection: React.FC = () => {
       id="slide-2" 
       className="relative flex flex-col items-center justify-center pt-8 pb-4 px-3 sm:px-4 text-center overflow-hidden content-visibility-auto"
     >
-      {/* Decorative Golden Arch Frame */}
-      <div className="relative z-10 max-w-2xl w-full mx-auto p-5 sm:p-8 md:p-10 rounded-3xl bg-gradient-to-b from-[#FFFDF9]/98 via-[#FAF8F5]/98 to-[#FAF5EC]/98 border-2 border-[#D4AF37]/60 shadow-[0_10px_40px_rgba(0,0,0,0.25)] text-[#2C2622] overflow-hidden ring-1 ring-[#D4AF37]/30">
+      {/* Decorative Golden Arch Frame with Fly-In / Fade-In */}
+      <motion.div 
+        initial={{ opacity: 0, y: 50, scale: 0.96 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-20px" }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        style={{ willChange: 'transform, opacity' }}
+        className="relative z-10 max-w-2xl w-full mx-auto p-5 sm:p-8 md:p-10 rounded-3xl bg-[#FFFDF9]/50 backdrop-blur-md border-2 border-[#D4AF37]/60 shadow-[0_10px_40px_rgba(0,0,0,0.25)] text-[#2C2622] overflow-hidden ring-1 ring-[#D4AF37]/30 transform-gpu"
+      >
         
         {/* Corner Filigree Accents */}
         <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-[#D4AF37] rounded-tl pointer-events-none" />
@@ -59,39 +66,72 @@ export const HeroSection: React.FC = () => {
         <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-[#D4AF37] rounded-br pointer-events-none" />
 
         {/* Walimatul 'Ursy Title */}
-        <div className="flex justify-center mb-2">
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.0, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="flex justify-center mb-2"
+        >
           <span className="font-cinzel text-xs sm:text-sm tracking-[0.3em] uppercase text-[#8B6B23] font-semibold border-b border-[#D4AF37]/40 pb-1">
             Walimatul 'Ursy
           </span>
-        </div>
+        </motion.div>
 
         {/* Bismillah calligraphy text */}
-        <div className="my-3 flex justify-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.0, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="my-3 flex justify-center"
+        >
           <p className="font-serif text-2xl sm:text-3xl text-[#52463C] tracking-wide" dir="rtl">
             بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
           </p>
-        </div>
+        </motion.div>
 
-        <p className="text-xs sm:text-sm text-[#786C62] italic max-w-md mx-auto mb-4 font-serif">
-          "Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah perkenankanlah kami merangkaikan kasih sayang yang Kau ciptakan dalam ikatan pernikahan."
-        </p>
+
 
         {/* COUPLE MAIN HEADLINE NAMES */}
-        <h1 className="font-serif-wedding text-4xl sm:text-6xl md:text-7xl font-bold text-[#2C2622] tracking-normal my-2 select-none">
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.88, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="font-serif-wedding text-4xl sm:text-6xl md:text-7xl font-bold text-[#2C2622] tracking-normal my-2 select-none"
+        >
           <span className="bg-gradient-to-r from-[#8B6B23] via-[#D4AF37] to-[#8B6B23] bg-clip-text text-transparent">
             Anton & Sri
           </span>
-        </h1>
+        </motion.h1>
 
-        <p className="text-xs tracking-[0.25em] text-[#8B6B23] uppercase font-cinzel font-semibold mb-6">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.0, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="text-xs tracking-[0.25em] text-[#8B6B23] uppercase font-cinzel font-semibold mb-6"
+        >
           Anton Dwi Prastia & Sri Yatin
-        </p>
+        </motion.p>
 
         {/* Date Display Pill */}
-        <div className="inline-flex items-center space-x-2 bg-[#FAF5EC] border border-[#D4AF37]/60 px-5 py-2 rounded-full text-[#8B6B23] font-cinzel text-xs sm:text-sm font-semibold shadow-sm mb-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.0, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          style={{ willChange: 'transform, opacity' }}
+          className="inline-flex items-center space-x-2 bg-[#FAF5EC] border border-[#D4AF37]/60 px-5 py-2 rounded-full text-[#8B6B23] font-cinzel text-xs sm:text-sm font-semibold shadow-sm mb-6"
+        >
           <Calendar className="w-4 h-4 text-[#AA771C]" />
           <span>{WEDDING_DATE_STRING}</span>
-        </div>
+        </motion.div>
 
         {/* COUNTDOWN TIMER */}
         <div className="mb-6">
@@ -102,9 +142,14 @@ export const HeroSection: React.FC = () => {
               { label: 'Menit', value: timeLeft.minutes },
               { label: 'Detik', value: timeLeft.seconds },
             ].map((item, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="bg-gradient-to-b from-[#FAF5EC] to-[#F3E5AB]/40 border border-[#D4AF37]/50 rounded-2xl p-2.5 sm:p-3 text-center shadow-md"
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 1.0 + index * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                style={{ willChange: 'transform, opacity' }}
+                className="bg-gradient-to-b from-[#FAF5EC] to-[#F3E5AB]/40 border border-[#D4AF37]/50 rounded-2xl p-2.5 sm:p-3 text-center shadow-md transform-gpu"
               >
                 <div className="font-serif-wedding text-2xl sm:text-3.5xl font-bold text-[#2C2622] leading-none">
                   {String(item.value).padStart(2, '0')}
@@ -112,20 +157,27 @@ export const HeroSection: React.FC = () => {
                 <div className="text-[10px] sm:text-xs text-[#8B6B23] uppercase font-cinzel font-semibold mt-1">
                   {item.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         {/* Save to Calendar Button */}
-        <button
+        <motion.button
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.0, delay: 1.45, ease: [0.16, 1, 0.3, 1] }}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          style={{ willChange: 'transform, opacity' }}
           onClick={handleSaveToCalendar}
-          className="inline-flex items-center space-x-2 bg-[#2C2622] hover:bg-[#3D352E] text-[#FCF6BA] border border-[#D4AF37] px-6 py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wider transition-all shadow-md cursor-pointer hover:shadow-lg"
+          className="inline-flex items-center space-x-2 bg-[#2C2622] hover:bg-[#3D352E] text-[#FCF6BA] border border-[#D4AF37] px-6 py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wider transition-all shadow-md cursor-pointer hover:shadow-lg transform-gpu"
         >
           <Download className="w-4 h-4 text-[#D4AF37]" />
           <span>Simpan Tanggal ke Google Calendar</span>
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
     </section>
   );
 };
